@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ChatterFix — Stop your keyboard from typing double</title>
+<meta name="description" content="ChatterFix is a free, open-source tool that fixes keyboard chatter, when a worn key registers two presses from a single tap. For macOS and Windows. No ads, no account, no tracking.">
+<link rel="canonical" href="https://chatterfix.app/">
+<link rel="icon" href="favicon-32.png" sizes="32x32">
+<link rel="icon" href="icon-512.png" sizes="512x512">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://chatterfix.app/">
+<meta property="og:title" content="ChatterFix — Stop your keyboard from typing double">
+<meta property="og:description" content="A free, open-source fix for keyboard chatter (double keypresses) on macOS and Windows.">
+<meta property="og:image" content="https://chatterfix.app/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="styles.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "ChatterFix",
+  "operatingSystem": "macOS 13+, Windows 10, Windows 11",
+  "applicationCategory": "UtilitiesApplication",
+  "description": "A free, open-source tool that fixes keyboard chatter, when a worn or dirty key registers two presses from a single tap.",
+  "url": "https://chatterfix.app/",
+  "downloadUrl": "https://github.com/AMarcinkiewicz/chatterfix/releases/latest",
+  "softwareVersion": "1.0.0",
+  "license": "https://github.com/AMarcinkiewicz/chatterfix/blob/master/LICENSE",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+</head>
+<body>
+
+<header class="nav">
+  <a class="brand" href="/">
+    <img src="icon-512.png" alt="" width="26" height="26">
+    <span>ChatterFix</span>
+  </a>
+  <nav class="nav-links">
+    <a href="#how">How it works</a>
+    <a href="#install">Install</a>
+    <a href="#faq">FAQ</a>
+    <a href="https://github.com/AMarcinkiewicz/chatterfix">GitHub</a>
+  </nav>
+</header>
+
+<main>
+
+  <section class="hero">
+    <img class="hero-icon" src="icon-1024.png" alt="ChatterFix icon" width="112" height="112">
+    <h1>Stop your keyboard<br>from typing double.</h1>
+    <p class="lede">
+      When a key wears out it can register two presses from a single tap, so
+      "hello" turns into "helllo". ChatterFix quietly catches the extra press
+      and lets the real one through.
+    </p>
+
+    <div class="download">
+      <a class="btn-primary" id="primary-download" href="https://github.com/AMarcinkiewicz/chatterfix/releases/latest">
+        <!-- Lucide "download" -->
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+        <span id="primary-label">Download</span>
+      </a>
+      <a class="btn-secondary" id="secondary-download" href="https://github.com/AMarcinkiewicz/chatterfix/releases/latest">
+        Other platform
+      </a>
+    </div>
+    <p class="microcopy">
+      Free and open source. macOS 13+ (Intel and Apple Silicon) and Windows 10 / 11.
+    </p>
+
+    <div class="stage" aria-hidden="true">
+      <div class="menubar">
+        <div class="menubar-right">
+          <span class="mb-glyph active" title="ChatterFix">
+            <!-- Lucide "keyboard" -->
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 8h.01"/><path d="M12 12h.01"/><path d="M14 8h.01"/><path d="M16 12h.01"/><path d="M18 8h.01"/><path d="M6 8h.01"/><path d="M7 16h10"/><path d="M8 12h.01"/><rect width="20" height="16" x="2" y="4" rx="2"/></svg>
+          </span>
+          <span class="mb-time">Thu 9:41</span>
+        </div>
+      </div>
+      <div class="menu">
+        <div class="menu-item disabled status"><span class="dot"></span>ChatterFix: On, 1,204 blocked</div>
+        <div class="menu-sep"></div>
+        <div class="menu-item">Pause Filtering</div>
+        <div class="menu-sep"></div>
+        <div class="menu-item submenu selected">Sensitivity<span class="chev">›</span></div>
+        <div class="menu-item submenu">Blocked Keys<span class="chev">›</span></div>
+        <div class="menu-sep"></div>
+        <div class="menu-item"><span class="check">✓</span>Start at Login</div>
+        <div class="menu-sep"></div>
+        <div class="menu-item">Quit ChatterFix</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="what">
+    <div class="wrap">
+      <h2>See it for yourself</h2>
+      <p class="section-lede">
+        A chattering key fires a second time within a few milliseconds of the
+        first. Real typing, even fast double letters, is much slower than that.
+        ChatterFix uses that gap to tell them apart.
+      </p>
+      <div class="demo">
+        <div class="demo-row">
+          <span class="demo-label">Chattering keyboard</span>
+          <code class="demo-out" id="demo-bad"></code>
+        </div>
+        <div class="demo-row">
+          <span class="demo-label">With ChatterFix</span>
+          <code class="demo-out good" id="demo-good"></code>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="how">
+    <h2>How it works</h2>
+    <div class="points">
+      <div class="point">
+        <h3>It adds no delay</h3>
+        <p>Every real keystroke passes straight through. Nothing is buffered or
+        held back, so typing and gaming feel exactly the same.</p>
+      </div>
+      <div class="point">
+        <h3>It never reads what you type</h3>
+        <p>ChatterFix only looks at timing, which key and how long since it was
+        last released. It keeps none of it, and the full source is public.</p>
+      </div>
+      <div class="point">
+        <h3>You stay in control</h3>
+        <p>A small menu lets you set how aggressive it is, see which keys are
+        chattering, pause it, or launch it at login.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="install">
+    <div class="wrap">
+      <h2>Install in under a minute</h2>
+      <div class="install-cols">
+        <div class="install-col">
+          <h3>macOS</h3>
+          <ol>
+            <li>Download the .dmg and open it.</li>
+            <li>Drag ChatterFix into Applications, then open it.</li>
+            <li>The first time, macOS shows an "unverified developer" notice
+              because the app is not signed with a paid certificate yet.
+              Right-click the app and choose <strong>Open</strong> to run it.</li>
+            <li>Allow the Accessibility permission when asked. Filtering starts
+              on its own.</li>
+          </ol>
+          <a class="btn-quiet" href="https://github.com/AMarcinkiewicz/chatterfix/releases/latest/download/ChatterFix-macOS.dmg">Download for macOS</a>
+        </div>
+        <div class="install-col">
+          <h3>Windows</h3>
+          <ol>
+            <li>Download and run ChatterFix.exe. There is no installer.</li>
+            <li>If SmartScreen appears, click <strong>More info</strong>, then
+              <strong>Run anyway</strong>. The warning shows only because the
+              app is not signed yet.</li>
+            <li>ChatterFix appears in your system tray and starts working right
+              away.</li>
+            <li>Open the tray menu and turn on Start at Login if you want it
+              every boot.</li>
+          </ol>
+          <a class="btn-quiet" href="https://github.com/AMarcinkiewicz/chatterfix/releases/latest/download/ChatterFix-Windows.exe">Download for Windows</a>
+        </div>
+      </div>
+      <p class="trust">
+        Not sure about the security prompts? They are normal for free apps that
+        are not paying for a certificate. Everything ChatterFix does is in the
+        open on <a href="https://github.com/AMarcinkiewicz/chatterfix">GitHub</a>,
+        so you can read exactly what it does before you run it.
+      </p>
+    </div>
+  </section>
+
+  <section class="wrap" id="faq">
+    <h2>Questions</h2>
+    <div class="faq">
+      <details>
+        <summary>Does it record what I type?</summary>
+        <p>No. ChatterFix only looks at the timing of key presses to spot a
+        bounce. It does not log, store, or send your keystrokes anywhere. The
+        code is public if you want to confirm this.</p>
+      </details>
+      <details>
+        <summary>Will it add lag or affect gaming?</summary>
+        <p>No added lag. Real presses pass through instantly, held keys are never
+        touched, and it only ever compares a key against itself, so fast typing
+        across different keys is fine. The one edge case is deliberately tapping
+        the same key faster than the threshold, which you can lower before a
+        session. Note that games with kernel-level anti-cheat read input below
+        where ChatterFix sits, so it does not apply inside those.</p>
+      </details>
+      <details>
+        <summary>Which keys does it fix?</summary>
+        <p>Any normal key that chatters. Open the Blocked Keys list in the menu
+        to see exactly which keys on your keyboard are misbehaving. Modifier keys
+        like Shift and Ctrl use a different path and are not filtered, but chatter
+        on those is rare.</p>
+      </details>
+      <details>
+        <summary>It caught a real double letter. What do I do?</summary>
+        <p>Lower the sensitivity one step. If chatter still slips through, raise
+        it one step. Standard (50 ms) works for most keyboards.</p>
+      </details>
+      <details>
+        <summary>Is it really free?</summary>
+        <p>Yes. Free to download, free to use, open source under the MIT license.
+        No ads, no account, no upsell.</p>
+      </details>
+      <details>
+        <summary>How do I remove it?</summary>
+        <p>On macOS, quit it from the menu and drag ChatterFix from Applications
+        to the Trash. On Windows, quit it from the tray and delete the .exe. It
+        leaves nothing else behind.</p>
+      </details>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <div class="footer-brand">
+      <img src="icon-512.png" alt="" width="22" height="22">
+      <span>ChatterFix</span>
+    </div>
+    <div class="footer-links">
+      <a href="https://github.com/AMarcinkiewicz/chatterfix">GitHub</a>
+      <a href="https://github.com/AMarcinkiewicz/chatterfix/releases/latest">Releases</a>
+      <a href="https://github.com/AMarcinkiewicz/chatterfix/blob/master/LICENSE">MIT License</a>
+    </div>
+    <p class="footer-note">Free and open source. Made for anyone with a keyboard that types double.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
