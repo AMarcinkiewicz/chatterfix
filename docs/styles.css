@@ -28,7 +28,7 @@ body {
 
 a { color: inherit; }
 
-.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
+.wrap { max-width: var(--wrap); margin: 0 auto; padding-left: 24px; padding-right: 24px; }
 
 /* Nav */
 .nav {
