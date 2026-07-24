@@ -202,6 +202,78 @@ a { color: inherit; }
 .status { padding-top: 6px; }
 .menu-sep { height: 1px; background: rgba(0,0,0,0.08); margin: 5px 8px; }
 
+/* Windows tray mockup */
+.stage-win .taskbar {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 42px;
+  background: rgba(243,244,246,0.92);
+  border-top: 1px solid rgba(0,0,0,0.08);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tb-apps { display: flex; align-items: center; gap: 12px; }
+.tb-win {
+  width: 15px; height: 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 2px;
+}
+.tb-win i { background: #3a6ea5; border-radius: 1px; }
+.tb-app { width: 17px; height: 17px; border-radius: 4px; background: #c6cacf; }
+.tb-tray {
+  position: absolute;
+  right: 12px; top: 0;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  color: #33373f;
+}
+.tb-caret { font-size: 11px; color: #565a61; }
+.tb-glyph { display: inline-flex; padding: 4px; border-radius: 5px; color: #22262e; }
+.tb-glyph.active { background: rgba(0,0,0,0.09); }
+.tb-clock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 11px;
+  line-height: 1.25;
+  color: #33373f;
+}
+
+.stage-win .context-menu {
+  position: absolute;
+  right: 18px;
+  bottom: 54px;
+  width: min(224px, calc(100% - 36px));
+  background: #fbfbfb;
+  border: 1px solid #b6b6b6;
+  border-radius: 7px;
+  box-shadow: 0 8px 22px rgba(20,24,33,0.20);
+  padding: 3px;
+  text-align: left;
+  font-family: "Segoe UI", var(--font);
+  font-size: 12.5px;
+  color: #1b1b1b;
+}
+.cm-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 6px 12px 6px 30px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+.cm-item .cm-arrow { margin-left: auto; font-size: 8px; color: #555; padding-left: 12px; }
+.cm-check { position: absolute; left: 10px; font-size: 11px; color: #1b1b1b; }
+.cm-hover { background: #e8f2fd; }
+.cm-status { color: #8a8a8a; }
+.cm-sep { height: 1px; background: #e4e4e4; margin: 4px 8px; }
+
 /* Bands and sections */
 .band { background: var(--band); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 main section { padding: 72px 0; }

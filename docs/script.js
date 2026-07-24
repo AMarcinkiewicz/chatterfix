@@ -25,6 +25,17 @@
     }
   }
 
+  // Show the mockup that matches the visitor's OS. Mac stays the default so a
+  // no-JS or unknown-OS visitor still sees a valid screenshot.
+  if (here === WIN) {
+    var macStage = document.querySelector(".stage-mac");
+    var winStage = document.querySelector(".stage-win");
+    if (macStage && winStage) {
+      macStage.hidden = true;
+      winStage.hidden = false;
+    }
+  }
+
   // Typing demo: same phrase typed on a chattering keyboard vs with ChatterFix.
   var bad = document.getElementById("demo-bad");
   var good = document.getElementById("demo-good");

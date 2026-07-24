@@ -71,7 +71,8 @@
       Free and open source. macOS 13+ (Intel and Apple Silicon) and Windows 10 / 11.
     </p>
 
-    <div class="stage" aria-hidden="true">
+    <!-- macOS menu-bar mockup (default; shown when OS is Mac or unknown) -->
+    <div class="stage stage-mac" aria-hidden="true">
       <div class="menubar">
         <div class="menubar-right">
           <span class="mb-glyph active" title="ChatterFix">
@@ -92,6 +93,37 @@
         <div class="menu-item"><span class="check">✓</span>Start at Login</div>
         <div class="menu-sep"></div>
         <div class="menu-item">Quit ChatterFix</div>
+      </div>
+    </div>
+
+    <!-- Windows system-tray mockup (shown when the visitor is on Windows) -->
+    <div class="stage stage-win" aria-hidden="true" hidden>
+      <div class="context-menu">
+        <div class="cm-item cm-status">ChatterFix: On, 1,204 blocked</div>
+        <div class="cm-sep"></div>
+        <div class="cm-item">Pause Filtering</div>
+        <div class="cm-sep"></div>
+        <div class="cm-item cm-hover">Sensitivity<span class="cm-arrow">▶</span></div>
+        <div class="cm-item">Blocked Keys<span class="cm-arrow">▶</span></div>
+        <div class="cm-sep"></div>
+        <div class="cm-item"><span class="cm-check">✓</span>Start at Login</div>
+        <div class="cm-sep"></div>
+        <div class="cm-item">Quit ChatterFix</div>
+      </div>
+      <div class="taskbar">
+        <div class="tb-apps">
+          <span class="tb-win"><i></i><i></i><i></i><i></i></span>
+          <span class="tb-app"></span>
+          <span class="tb-app"></span>
+        </div>
+        <div class="tb-tray">
+          <span class="tb-caret">⌃</span>
+          <span class="tb-glyph active" title="ChatterFix">
+            <!-- Lucide "keyboard" -->
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 8h.01"/><path d="M12 12h.01"/><path d="M14 8h.01"/><path d="M16 12h.01"/><path d="M18 8h.01"/><path d="M6 8h.01"/><path d="M7 16h10"/><path d="M8 12h.01"/><rect width="20" height="16" x="2" y="4" rx="2"/></svg>
+          </span>
+          <span class="tb-clock"><span>9:41 AM</span><span>7/24/2026</span></span>
+        </div>
       </div>
     </div>
   </section>
