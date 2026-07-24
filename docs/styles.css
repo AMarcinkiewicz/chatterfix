@@ -353,7 +353,9 @@ h2 {
 .install-col li { margin-bottom: 10px; color: var(--ink-soft); font-size: 15.5px; }
 .install-col li strong { color: var(--ink); font-weight: 600; }
 .btn-quiet {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   border: 1px solid var(--ink);
   color: var(--ink);
   text-decoration: none;

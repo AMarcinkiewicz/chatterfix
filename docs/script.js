@@ -29,10 +29,8 @@
 
     var secondary = document.getElementById("secondary-download");
     var secondaryLabel = document.getElementById("secondary-label");
-    var secondaryIcon = document.getElementById("secondary-icon");
     if (secondary) secondary.href = there.url;
     if (secondaryLabel) secondaryLabel.textContent = there.label;
-    if (secondaryIcon) secondaryIcon.innerHTML = there.icon;
   }
 
   // Show the mockup that matches the visitor's OS. Mac stays the default so a
