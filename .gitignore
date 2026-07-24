@@ -1,0 +1,17 @@
+# macOS
+.DS_Store
+
+# Mac build artifacts (binaries ship via GitHub Releases, not git)
+mac/ChatterFix.app/
+mac/ChatterFix_exec
+mac/ChatterFix_arm64
+mac/ChatterFix_x86_64
+mac/make_icon_exec
+mac/chatterfix
+mac/*.dmg
+mac/icon_1024.png
+mac/AppIcon.iconset/
+
+# Windows build artifacts
+windows/ChatterFix.exe
+windows/*.pdb
