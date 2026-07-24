@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ChatterFix — Stop your keyboard from typing double</title>
+<title>ChatterFix: Stop your keyboard from typing double</title>
 <meta name="description" content="ChatterFix is a free, open-source tool that fixes keyboard chatter, when a worn key registers two presses from a single tap. For macOS and Windows. No ads, no account, no tracking.">
 <link rel="canonical" href="https://chatterfix.app/">
 <link rel="icon" href="favicon-32.png" sizes="32x32">
@@ -11,7 +11,7 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://chatterfix.app/">
-<meta property="og:title" content="ChatterFix — Stop your keyboard from typing double">
+<meta property="og:title" content="ChatterFix: Stop your keyboard from typing double">
 <meta property="og:description" content="A free, open-source fix for keyboard chatter (double keypresses) on macOS and Windows.">
 <meta property="og:image" content="https://chatterfix.app/og.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -53,9 +53,8 @@
     <img class="hero-icon" src="icon-1024.png" alt="ChatterFix icon" width="112" height="112">
     <h1>Stop your keyboard<br>from typing double.</h1>
     <p class="lede">
-      When a key wears out it can register two presses from a single tap, so
-      "hello" turns into "helllo". ChatterFix quietly catches the extra press
-      and lets the real one through.
+      A worn key can fire twice from one tap, so "hello" comes out "helllo".
+      ChatterFix drops the extra press and keeps the real one.
     </p>
 
     <div class="download">
@@ -101,9 +100,8 @@
     <div class="wrap">
       <h2>See it for yourself</h2>
       <p class="section-lede">
-        A chattering key fires a second time within a few milliseconds of the
-        first. Real typing, even fast double letters, is much slower than that.
-        ChatterFix uses that gap to tell them apart.
+        Chatter repeats within a few milliseconds. Real typing is slower, even
+        fast double letters, so ChatterFix can tell them apart.
       </p>
       <div class="demo">
         <div class="demo-row">
@@ -122,19 +120,19 @@
     <h2>How it works</h2>
     <div class="points">
       <div class="point">
-        <h3>It adds no delay</h3>
-        <p>Every real keystroke passes straight through. Nothing is buffered or
-        held back, so typing and gaming feel exactly the same.</p>
+        <h3>No delay</h3>
+        <p>Real keystrokes pass straight through. No buffering, no lag, no
+        change to how typing or gaming feels.</p>
       </div>
       <div class="point">
-        <h3>It never reads what you type</h3>
-        <p>ChatterFix only looks at timing, which key and how long since it was
-        last released. It keeps none of it, and the full source is public.</p>
+        <h3>No keylogging</h3>
+        <p>It checks timing, not what you type. Nothing is logged or stored,
+        and the source is public.</p>
       </div>
       <div class="point">
-        <h3>You stay in control</h3>
-        <p>A small menu lets you set how aggressive it is, see which keys are
-        chattering, pause it, or launch it at login.</p>
+        <h3>Your call</h3>
+        <p>Set the sensitivity, see which keys chatter, pause it, or launch it
+        at login. All from the menu bar.</p>
       </div>
     </div>
   </section>
@@ -146,36 +144,30 @@
         <div class="install-col">
           <h3>macOS</h3>
           <ol>
-            <li>Download the .dmg and open it.</li>
-            <li>Drag ChatterFix into Applications, then open it.</li>
-            <li>The first time, macOS shows an "unverified developer" notice
-              because the app is not signed with a paid certificate yet.
-              Right-click the app and choose <strong>Open</strong> to run it.</li>
-            <li>Allow the Accessibility permission when asked. Filtering starts
-              on its own.</li>
+            <li>Open the .dmg and drag ChatterFix into Applications.</li>
+            <li>First launch: right-click the app and choose <strong>Open</strong>
+              to get past the "unverified developer" notice.</li>
+            <li>Allow Accessibility when asked. Filtering starts on its own.</li>
           </ol>
           <a class="btn-quiet" href="https://github.com/AMarcinkiewicz/chatterfix/releases/latest/download/ChatterFix-macOS.dmg">Download for macOS</a>
         </div>
         <div class="install-col">
           <h3>Windows</h3>
           <ol>
-            <li>Download and run ChatterFix.exe. There is no installer.</li>
+            <li>Run ChatterFix.exe. No installer.</li>
             <li>If SmartScreen appears, click <strong>More info</strong>, then
-              <strong>Run anyway</strong>. The warning shows only because the
-              app is not signed yet.</li>
-            <li>ChatterFix appears in your system tray and starts working right
-              away.</li>
-            <li>Open the tray menu and turn on Start at Login if you want it
-              every boot.</li>
+              <strong>Run anyway</strong>.</li>
+            <li>It lands in the system tray and starts working right away.</li>
+            <li>Turn on Start at Login from the tray menu to run it every boot.</li>
           </ol>
           <a class="btn-quiet" href="https://github.com/AMarcinkiewicz/chatterfix/releases/latest/download/ChatterFix-Windows.exe">Download for Windows</a>
         </div>
       </div>
       <p class="trust">
-        Not sure about the security prompts? They are normal for free apps that
-        are not paying for a certificate. Everything ChatterFix does is in the
-        open on <a href="https://github.com/AMarcinkiewicz/chatterfix">GitHub</a>,
-        so you can read exactly what it does before you run it.
+        Those prompts are normal for free apps without a paid certificate.
+        Everything ChatterFix does is open on
+        <a href="https://github.com/AMarcinkiewicz/chatterfix">GitHub</a>, so you
+        can read the code before running it.
       </p>
     </div>
   </section>
@@ -185,41 +177,37 @@
     <div class="faq">
       <details>
         <summary>Does it record what I type?</summary>
-        <p>No. ChatterFix only looks at the timing of key presses to spot a
-        bounce. It does not log, store, or send your keystrokes anywhere. The
-        code is public if you want to confirm this.</p>
+        <p>No. It only checks key timing to spot a bounce, and stores nothing.
+        The code is public if you want to confirm it.</p>
       </details>
       <details>
         <summary>Will it add lag or affect gaming?</summary>
-        <p>No added lag. Real presses pass through instantly, held keys are never
-        touched, and it only ever compares a key against itself, so fast typing
-        across different keys is fine. The one edge case is deliberately tapping
-        the same key faster than the threshold, which you can lower before a
-        session. Note that games with kernel-level anti-cheat read input below
-        where ChatterFix sits, so it does not apply inside those.</p>
+        <p>No lag. Real presses pass instantly, and held keys or different-key
+        combos are never touched. The only edge case is tapping one key faster
+        than the threshold, which you can lower before playing. Games with
+        kernel-level anti-cheat read input below ChatterFix, so it does not
+        apply inside those.</p>
       </details>
       <details>
         <summary>Which keys does it fix?</summary>
-        <p>Any normal key that chatters. Open the Blocked Keys list in the menu
-        to see exactly which keys on your keyboard are misbehaving. Modifier keys
-        like Shift and Ctrl use a different path and are not filtered, but chatter
-        on those is rare.</p>
+        <p>Any normal key. The Blocked Keys list shows which of yours are
+        misbehaving. Modifier keys like Shift and Ctrl are not filtered, but
+        chatter on those is rare.</p>
       </details>
       <details>
         <summary>It caught a real double letter. What do I do?</summary>
-        <p>Lower the sensitivity one step. If chatter still slips through, raise
-        it one step. Standard (50 ms) works for most keyboards.</p>
+        <p>Lower the sensitivity one step. If chatter still gets through, raise
+        it one step. Standard (50 ms) suits most keyboards.</p>
       </details>
       <details>
         <summary>Is it really free?</summary>
-        <p>Yes. Free to download, free to use, open source under the MIT license.
-        No ads, no account, no upsell.</p>
+        <p>Yes. Free and open source under the MIT license. No ads, no account,
+        no upsell.</p>
       </details>
       <details>
         <summary>How do I remove it?</summary>
-        <p>On macOS, quit it from the menu and drag ChatterFix from Applications
-        to the Trash. On Windows, quit it from the tray and delete the .exe. It
-        leaves nothing else behind.</p>
+        <p>On macOS, quit it and drag ChatterFix to the Trash. On Windows, quit
+        it and delete the .exe. Nothing is left behind.</p>
       </details>
     </div>
   </section>
@@ -237,7 +225,7 @@
       <a href="https://github.com/AMarcinkiewicz/chatterfix/releases/latest">Releases</a>
       <a href="https://github.com/AMarcinkiewicz/chatterfix/blob/master/LICENSE">MIT License</a>
     </div>
-    <p class="footer-note">Free and open source. Made for anyone with a keyboard that types double.</p>
+    <p class="footer-note">Free and open source. For anyone with a keyboard that types double.</p>
   </div>
 </footer>
 
