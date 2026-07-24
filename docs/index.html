@@ -59,12 +59,15 @@
 
     <div class="download">
       <a class="btn-primary" id="primary-download" href="https://github.com/AMarcinkiewicz/chatterfix/releases/latest">
-        <!-- Lucide "download" -->
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+        <span class="btn-ico" id="primary-icon">
+          <!-- Lucide "download" (generic fallback until OS is detected) -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+        </span>
         <span id="primary-label">Download</span>
       </a>
       <a class="btn-secondary" id="secondary-download" href="https://github.com/AMarcinkiewicz/chatterfix/releases/latest">
-        Other platform
+        <span class="btn-ico" id="secondary-icon"></span>
+        <span id="secondary-label">Other platform</span>
       </a>
     </div>
     <p class="microcopy">

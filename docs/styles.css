@@ -106,10 +106,15 @@ a { color: inherit; }
   transition: transform .12s ease, background .15s;
 }
 .btn-primary:hover { background: #000; transform: translateY(-1px); }
-.btn-primary .ico { width: 17px; height: 17px; }
+.btn-ico { display: inline-flex; align-items: center; }
+.btn-ico:empty { display: none; }
+.btn-ico svg { width: 16px; height: 16px; display: block; }
+.btn-ico .mark-apple { width: 15px; height: 15px; margin-top: -2px; }
+.btn-ico .mark-win { width: 14px; height: 14px; }
 .btn-secondary {
   display: inline-flex;
   align-items: center;
+  gap: 8px;
   text-decoration: none;
   font-size: 16px;
   color: var(--ink-soft);
