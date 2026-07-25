@@ -56,8 +56,9 @@ a { color: inherit; }
   display: flex;
   align-items: center;
   gap: 9px;
-  font-weight: 650;
-  font-size: 17px;
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 18px;
   letter-spacing: -0.01em;
   text-decoration: none;
 }
@@ -439,7 +440,8 @@ h2 {
 .footer-inner { display: flex; flex-direction: column; gap: 16px; }
 .footer-brand {
   display: flex; align-items: center; gap: 9px;
-  color: #fff; font-weight: 600; font-size: 16px;
+  color: #fff; font-weight: 600; font-size: 17px;
+  font-family: var(--font-head);
 }
 .footer-brand img { border-radius: 5px; }
 .footer-links { display: flex; gap: 22px; flex-wrap: wrap; }
