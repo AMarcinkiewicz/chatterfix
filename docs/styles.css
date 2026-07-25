@@ -7,7 +7,8 @@
   --navy: #2b3140;
   --red: #ed544f;
   --radius: 12px;
-  --wrap: 940px;
+  --wrap: 1040px;
+  --gutter: 32px;
   --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
 }
@@ -28,7 +29,7 @@ body {
 
 a { color: inherit; }
 
-.wrap { max-width: var(--wrap); margin: 0 auto; padding-left: 24px; padding-right: 24px; }
+.wrap { max-width: var(--wrap); margin: 0 auto; padding-left: var(--gutter); padding-right: var(--gutter); }
 
 /* Nav */
 .nav {
@@ -37,7 +38,7 @@ a { color: inherit; }
   justify-content: space-between;
   max-width: var(--wrap);
   margin: 0 auto;
-  padding: 20px 24px;
+  padding: 22px var(--gutter);
 }
 .brand {
   display: flex;
@@ -61,8 +62,8 @@ a { color: inherit; }
 /* Hero */
 .hero {
   text-align: center;
-  padding: 56px 24px 8px;
-  max-width: 760px;
+  padding: 64px var(--gutter) 8px;
+  max-width: var(--wrap);
   margin: 0 auto;
 }
 .hero-icon {
@@ -289,12 +290,14 @@ h2 {
   letter-spacing: -0.02em;
   font-weight: 680;
   margin: 0 0 16px;
+  text-align: center;
 }
 .section-lede {
   font-size: 18px;
   color: var(--ink-soft);
   max-width: 620px;
-  margin: 0 0 30px;
+  margin: 0 auto 34px;
+  text-align: center;
 }
 
 /* Typing demo */
@@ -304,6 +307,7 @@ h2 {
   overflow: hidden;
   background: #fff;
   max-width: 560px;
+  margin: 0 auto;
 }
 .demo-row {
   display: flex;
@@ -337,7 +341,9 @@ h2 {
 .points {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
+  gap: 34px;
+  max-width: 900px;
+  margin: 0 auto;
 }
 .point h3 { font-size: 18px; margin: 0 0 8px; letter-spacing: -0.01em; }
 .point p { margin: 0; color: var(--ink-soft); font-size: 15.5px; }
@@ -346,7 +352,9 @@ h2 {
 .install-cols {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 40px;
+  gap: 48px;
+  max-width: 840px;
+  margin: 0 auto;
 }
 .install-col h3 { font-size: 19px; margin: 0 0 14px; }
 .install-col ol { margin: 0 0 22px; padding-left: 20px; }
@@ -367,15 +375,16 @@ h2 {
 }
 .btn-quiet:hover { background: var(--ink); color: #fff; }
 .trust {
-  margin: 36px 0 0;
+  margin: 40px auto 0;
   font-size: 15px;
   color: var(--ink-soft);
-  max-width: 680px;
+  max-width: 640px;
+  text-align: center;
 }
 .trust a { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; }
 
 /* FAQ */
-.faq { max-width: 720px; }
+.faq { max-width: 720px; margin: 0 auto; }
 .faq details {
   border-bottom: 1px solid var(--line);
   padding: 4px 0;
@@ -422,13 +431,13 @@ h2 {
 .footer-links { display: flex; gap: 22px; flex-wrap: wrap; }
 .footer-links a { color: #c7ccd6; text-decoration: none; font-size: 15px; }
 .footer-links a:hover { color: #fff; }
-.footer-note { margin: 0; font-size: 13.5px; color: #8890a0; }
 
-/* Responsive */
+/* Responsive (desktop is the priority; this keeps small screens usable) */
 @media (max-width: 720px) {
+  :root { --gutter: 20px; }
   .nav-links { gap: 16px; }
   .nav-links a:not(:last-child) { display: none; }
-  .points { grid-template-columns: 1fr; gap: 26px; }
+  .points { grid-template-columns: 1fr; gap: 26px; text-align: center; }
   .install-cols { grid-template-columns: 1fr; gap: 32px; }
   .demo-row { flex-direction: column; align-items: flex-start; gap: 4px; }
   .demo-label { width: auto; }
