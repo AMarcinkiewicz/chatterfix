@@ -133,7 +133,7 @@ a { color: inherit; }
 /* Product stage / menu mockup */
 .stage {
   margin: 52px auto 0;
-  max-width: 620px;
+  max-width: 720px;
   min-height: 340px;
   background:
     radial-gradient(120% 80% at 50% 0%, #eef0f3 0%, #f6f7f8 55%, #f2f3f5 100%);
