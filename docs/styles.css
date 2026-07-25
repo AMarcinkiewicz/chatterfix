@@ -186,6 +186,19 @@ a { color: inherit; }
   display: flex;
   align-items: center;
 }
+.mb-sys {
+  position: absolute;
+  left: calc(50% - 30px);
+  right: 84px;
+  top: 0;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #2c313a;
+}
+.mb-ico { display: inline-flex; }
+.mb-ico svg { width: 15px; height: 15px; display: block; }
 
 .menu {
   position: absolute;
