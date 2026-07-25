@@ -84,9 +84,10 @@ a { color: inherit; }
   margin-bottom: 26px;
 }
 .hero h1 {
+  font-family: var(--font-head);
   font-size: clamp(34px, 6vw, 56px);
-  line-height: 1.04;
-  letter-spacing: -0.03em;
+  line-height: 1.06;
+  letter-spacing: -0.02em;
   font-weight: 700;
   margin: 0 0 20px;
 }
