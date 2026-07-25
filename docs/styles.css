@@ -173,6 +173,7 @@ a { color: inherit; }
   padding: 3px;
   border-radius: 5px;
   color: #22262e;
+  transform: translateX(-84px);
 }
 .mb-glyph.active { background: rgba(0,0,0,0.08); }
 .mb-time {
@@ -190,7 +191,7 @@ a { color: inherit; }
   position: absolute;
   top: 40px;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(calc(-50% - 84px));
   width: min(268px, calc(100% - 28px));
   background: rgba(250,250,251,0.98);
   border: 1px solid rgba(0,0,0,0.09);
@@ -209,11 +210,35 @@ a { color: inherit; }
   white-space: nowrap;
 }
 .menu-item .chev { margin-left: auto; color: #9aa0ab; }
-.menu-item.submenu { }
-.menu-item.selected { background: var(--navy); color: #fff; }
-.menu-item.selected .chev { color: rgba(255,255,255,0.8); }
+.menu-item.submenu { position: relative; }
+.menu-item.selected { background: linear-gradient(180deg, #4d8df6, #3a78f3); color: #fff; }
+.menu-item.selected .chev { color: #fff; }
 .menu-item.disabled { color: #8b909a; font-size: 12.5px; }
 .menu-item .check { width: 16px; margin-left: -2px; }
+
+/* Sensitivity submenu, flying out from the highlighted item */
+.submenu-pop {
+  position: absolute;
+  left: calc(100% + 5px);
+  top: -6px;
+  width: 172px;
+  background: rgba(250,250,251,0.98);
+  border: 1px solid rgba(0,0,0,0.09);
+  border-radius: 10px;
+  box-shadow: 0 12px 34px rgba(20,24,33,0.18);
+  padding: 5px;
+  color: #1d2027;
+  font-weight: 400;
+}
+.sub-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 5px 10px 5px 26px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+.sub-item .check { position: absolute; left: 8px; width: auto; margin: 0; }
 .menu-item .dot {
   width: 7px; height: 7px; border-radius: 50%;
   background: #35c759; margin-right: 8px;
@@ -293,6 +318,19 @@ a { color: inherit; }
 .cm-hover { background: #e8f2fd; }
 .cm-status { color: #8a8a8a; }
 .cm-sep { height: 1px; background: #e4e4e4; margin: 4px 8px; }
+/* Sensitivity submenu, flying out to the left (menu sits at the screen edge) */
+.cm-sub {
+  position: absolute;
+  right: calc(100% + 4px);
+  top: -4px;
+  width: 168px;
+  background: #fbfbfb;
+  border: 1px solid #b6b6b6;
+  border-radius: 7px;
+  box-shadow: 0 8px 22px rgba(20,24,33,0.20);
+  padding: 3px;
+  color: #1b1b1b;
+}
 
 /* Bands and sections */
 .band { background: var(--band); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
@@ -458,4 +496,8 @@ h2 {
   .demo-row { flex-direction: column; align-items: flex-start; gap: 4px; }
   .demo-label { width: auto; }
   main section { padding: 56px 0; }
+  /* Simplify the Mac mockup on small screens: centered menu, no fly-out */
+  .menu { transform: translateX(-50%); }
+  .mb-glyph { transform: none; }
+  .submenu-pop, .cm-sub { display: none; }
 }
