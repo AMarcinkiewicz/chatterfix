@@ -396,8 +396,9 @@ h2 {
   flex-shrink: 0;
 }
 .demo-out {
-  font-family: var(--mono);
-  font-size: 17px;
+  font-family: var(--font-head);
+  font-size: 18px;
+  font-weight: 500;
   color: var(--ink);
   min-height: 22px;
 }
