@@ -106,9 +106,9 @@
 
   (async function loop() {
     while (true) {
-      for (var i = 0; i < 4; i++) { base += "typi"[i]; render(); await sleep(120); }
-      extra = "i"; render(); await sleep(90);   // the accidental double-press (red)
-      await sleep(360);                          // it sits there for a beat
+      for (var i = 0; i < 4; i++) { base += "typi"[i]; render(); await sleep(i === 3 ? 40 : 120); }
+      extra = "i"; render();                     // the double-press bounces in instantly
+      await sleep(430);                          // it sits there for a beat
       extra = ""; render(); await sleep(150);    // ChatterFix deletes the extra
       var rest = "ng.";
       for (var j = 0; j < rest.length; j++) { base += rest[j]; render(); await sleep(125); }
