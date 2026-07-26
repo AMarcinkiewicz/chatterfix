@@ -399,10 +399,10 @@ h2 {
 .demo-out {
   font-family: var(--mono);
   font-size: 17px;
-  color: var(--red);
+  color: var(--ink);
   min-height: 22px;
 }
-.demo-out.good { color: #1a8f3c; }
+.demo-out .chat { color: var(--red); }
 .demo-out .caret {
   display: inline-block;
   width: 8px; margin-left: 1px;

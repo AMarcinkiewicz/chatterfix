@@ -58,14 +58,14 @@
       var s = "";
       for (var i = 0; i < ex.text.length; i++) {
         s += ex.text[i];
-        if (ex.doubleAt[i]) s += ex.text[i];
+        if (ex.doubleAt[i]) s += '<span class="chat">' + ex.text[i] + "</span>";
       }
       return s;
     }
     var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     if (reduced) {
-      bad.textContent = buildBad(examples[0]);
+      bad.innerHTML = buildBad(examples[0]);
       good.textContent = examples[0].text;
     } else {
       var caret = '<span class="caret"></span>';
@@ -80,7 +80,7 @@
             var ch = ex.text[i];
             g += ch;
             b += ch;
-            if (ex.doubleAt[i]) b += ch;
+            if (ex.doubleAt[i]) b += '<span class="chat">' + ch + "</span>";
             bad.innerHTML = b + caret;
             good.innerHTML = g + caret;
             await sleep(ch === " " ? 130 : 115);
