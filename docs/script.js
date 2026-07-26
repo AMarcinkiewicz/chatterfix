@@ -44,39 +44,54 @@
     }
   }
 
-  // Typing demo: same phrase typed on a chattering keyboard vs with ChatterFix.
+  // Typing demo: several phrases typed on a chattering keyboard vs with ChatterFix.
   var bad = document.getElementById("demo-bad");
   var good = document.getElementById("demo-good");
   if (bad && good) {
-    var phrase = "hello world";
-    var doubleAt = { 3: true, 8: true }; // extra bounce on the second l and the r
+    var examples = [
+      { text: "hello world", doubleAt: { 3: true, 8: true } },
+      { text: "good morning", doubleAt: { 2: true, 7: true } },
+      { text: "type it once", doubleAt: { 2: true, 9: true } },
+      { text: "double check", doubleAt: { 3: true, 10: true } }
+    ];
+    function buildBad(ex) {
+      var s = "";
+      for (var i = 0; i < ex.text.length; i++) {
+        s += ex.text[i];
+        if (ex.doubleAt[i]) s += ex.text[i];
+      }
+      return s;
+    }
     var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     if (reduced) {
-      bad.textContent = "helllo worrld";
-      good.textContent = "hello world";
+      bad.textContent = buildBad(examples[0]);
+      good.textContent = examples[0].text;
     } else {
       var caret = '<span class="caret"></span>';
       var sleep = function (ms) { return new Promise(function (r) { setTimeout(r, ms); }); };
 
       (async function loop() {
+        var idx = 0;
         while (true) {
+          var ex = examples[idx];
           var b = "", g = "";
-          for (var i = 0; i < phrase.length; i++) {
-            var ch = phrase[i];
+          for (var i = 0; i < ex.text.length; i++) {
+            var ch = ex.text[i];
             g += ch;
             b += ch;
-            if (doubleAt[i]) b += ch;
+            if (ex.doubleAt[i]) b += ch;
             bad.innerHTML = b + caret;
             good.innerHTML = g + caret;
             await sleep(ch === " " ? 130 : 115);
           }
           bad.innerHTML = b;
           good.innerHTML = g;
-          await sleep(1600);
+          await sleep(1800);
           bad.innerHTML = caret;
           good.innerHTML = caret;
-          await sleep(650);
+          await sleep(500);
+          idx = (idx + 1) % examples.length;
         }
       })();
     }
