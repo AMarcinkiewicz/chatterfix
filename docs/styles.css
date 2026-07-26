@@ -87,6 +87,30 @@ a { color: inherit; }
   font-weight: 700;
   margin: 0 0 20px;
 }
+
+/* The word "double" briefly double-prints as a red ghost, then resolves,
+   a tiny demo of a chattering key being caught. Layout-stable (overlay). */
+.chatter-word { position: relative; }
+.chatter-word::after {
+  content: "typing";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--red);
+  opacity: 0;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .chatter-word::after {
+    animation: chatter-ghost 5.5s ease-in-out infinite;
+  }
+}
+@keyframes chatter-ghost {
+  0%, 60% { opacity: 0; transform: translate(0, 0); }
+  66% { opacity: 0.55; transform: translate(0.09em, 0.06em); }
+  80% { opacity: 0.55; transform: translate(0.09em, 0.06em); }
+  90%, 100% { opacity: 0; transform: translate(0, 0); }
+}
 .lede {
   font-size: 19px;
   color: var(--ink-soft);
