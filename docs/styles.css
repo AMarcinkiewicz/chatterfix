@@ -405,8 +405,11 @@ h2 {
 .demo-out .chat { color: var(--red); }
 .demo-out .caret {
   display: inline-block;
-  width: 8px; margin-left: 1px;
-  border-bottom: 2px solid currentColor;
+  width: 1.5px;
+  height: 0.95em;
+  background: currentColor;
+  margin-left: 2px;
+  transform: translateY(0.12em);
   animation: blink 1s step-end infinite;
 }
 @keyframes blink { 50% { opacity: 0; } }

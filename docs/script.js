@@ -49,10 +49,10 @@
   var good = document.getElementById("demo-good");
   if (bad && good) {
     var examples = [
-      { text: "let me know what you think", doubleAt: { 9: true, 15: true } },
-      { text: "thanks for getting back to me", doubleAt: { 3: true, 9: true } },
-      { text: "can you double check this one", doubleAt: { 11: true, 19: true } },
-      { text: "talk to you tomorrow morning", doubleAt: { 2: true, 22: true } }
+      { text: "let me know what you think", doubleAt: { 1: true, 9: true, 15: true, 24: true } },
+      { text: "thanks for getting back to me", doubleAt: { 3: true, 9: true, 16: true, 21: true } },
+      { text: "can you double check this one", doubleAt: { 2: true, 11: true, 19: true, 24: true } },
+      { text: "talk to you tomorrow morning", doubleAt: { 2: true, 9: true, 15: true, 24: true } }
     ];
     function buildBad(ex) {
       var s = "";
