@@ -49,10 +49,10 @@
   var good = document.getElementById("demo-good");
   if (bad && good) {
     var examples = [
-      { text: "hello world", doubleAt: { 3: true, 8: true } },
-      { text: "good morning", doubleAt: { 2: true, 7: true } },
-      { text: "type it once", doubleAt: { 2: true, 9: true } },
-      { text: "double check", doubleAt: { 3: true, 10: true } }
+      { text: "let me know what you think", doubleAt: { 9: true, 15: true } },
+      { text: "thanks for getting back to me", doubleAt: { 3: true, 9: true } },
+      { text: "can you double check this one", doubleAt: { 11: true, 19: true } },
+      { text: "talk to you tomorrow morning", doubleAt: { 2: true, 22: true } }
     ];
     function buildBad(ex) {
       var s = "";
@@ -83,7 +83,7 @@
             if (ex.doubleAt[i]) b += '<span class="chat">' + ch + "</span>";
             bad.innerHTML = b + caret;
             good.innerHTML = g + caret;
-            await sleep(ch === " " ? 130 : 115);
+            await sleep(ch === " " ? 115 : 80);
           }
           bad.innerHTML = b;
           good.innerHTML = g;
