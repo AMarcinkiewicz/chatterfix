@@ -88,29 +88,31 @@ a { color: inherit; }
   margin: 0 0 20px;
 }
 
-/* The word "double" briefly double-prints as a red ghost, then resolves,
-   a tiny demo of a chattering key being caught. Layout-stable (overlay). */
-.chatter-word { position: relative; }
-.chatter-word::after {
-  content: "typing";
+/* Typewriter demo on the last word: it types, double-presses a letter
+   (shown in red), deletes the extra, then finishes. A transparent ghost
+   reserves the full width so the headline never reflows. If JS is off or
+   reduced-motion is on, the ghost stays visible as plain static text. */
+.type-word { position: relative; display: inline-block; }
+.type-live { display: none; }
+.type-word.js-typing .type-ghost { color: transparent; }
+.type-word.js-typing .type-live {
+  display: inline;
   position: absolute;
   left: 0;
   top: 0;
-  color: var(--red);
-  opacity: 0;
-  pointer-events: none;
+  white-space: nowrap;
 }
-@media (prefers-reduced-motion: no-preference) {
-  .chatter-word::after {
-    animation: chatter-ghost 5.5s ease-in-out infinite;
-  }
+.type-live .chat { color: var(--red); }
+.type-caret {
+  display: inline-block;
+  width: 0.05em;
+  height: 0.78em;
+  background: currentColor;
+  margin-left: 0.04em;
+  transform: translateY(0.08em);
+  animation: type-caret-blink 1.05s steps(1) infinite;
 }
-@keyframes chatter-ghost {
-  0%, 60% { opacity: 0; transform: translate(0, 0); }
-  66% { opacity: 0.55; transform: translate(0.09em, 0.06em); }
-  80% { opacity: 0.55; transform: translate(0.09em, 0.06em); }
-  90%, 100% { opacity: 0; transform: translate(0, 0); }
-}
+@keyframes type-caret-blink { 50% { opacity: 0; } }
 .lede {
   font-size: 19px;
   color: var(--ink-soft);

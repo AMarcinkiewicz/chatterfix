@@ -82,3 +82,39 @@
     }
   }
 })();
+
+// Hero typewriter: acts out a double-press being deleted, then finishing.
+(function () {
+  var wrap = document.querySelector(".type-word");
+  var live = document.querySelector(".type-live");
+  if (!wrap || !live) return;
+  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    return; // leave the static ghost word visible
+  }
+
+  wrap.classList.add("js-typing");
+  var caret = '<span class="type-caret"></span>';
+  var base = "";
+  var extra = "";
+  function esc(s) { return s.replace(/&/g, "&amp;").replace(/</g, "&lt;"); }
+  function render() {
+    live.innerHTML =
+      esc(base) + (extra ? '<span class="chat">' + esc(extra) + "</span>" : "") + caret;
+  }
+  var sleep = function (ms) { return new Promise(function (r) { setTimeout(r, ms); }); };
+  render();
+
+  (async function loop() {
+    while (true) {
+      for (var i = 0; i < 4; i++) { base += "typi"[i]; render(); await sleep(120); }
+      extra = "i"; render(); await sleep(90);   // the accidental double-press (red)
+      await sleep(360);                          // it sits there for a beat
+      extra = ""; render(); await sleep(150);    // ChatterFix deletes the extra
+      var rest = "ng.";
+      for (var j = 0; j < rest.length; j++) { base += rest[j]; render(); await sleep(125); }
+      await sleep(2600);                         // hold the finished word
+      while (base.length) { base = base.slice(0, -1); render(); await sleep(55); }
+      await sleep(650);
+    }
+  })();
+})();
