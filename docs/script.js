@@ -5,8 +5,8 @@
   var APPLE = '<svg class="mark-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 12.04c-.03-2.6 2.12-3.84 2.22-3.9-1.21-1.78-3.09-2.02-3.78-2.05-1.61-.16-3.14.94-3.95.94-.81 0-2.07-.92-3.4-.9-1.75.03-3.36 1.02-4.26 2.58-1.82 3.15-.46 7.81 1.3 10.37.86 1.25 1.89 2.66 3.24 2.61 1.3-.05 1.79-.84 3.36-.84 1.57 0 2.01.84 3.39.81 1.4-.03 2.29-1.28 3.15-2.54.99-1.46 1.4-2.87 1.42-2.94-.03-.02-2.73-1.05-2.76-4.16zM14.53 4.62c.72-.87 1.2-2.08 1.07-3.29-1.03.04-2.29.69-3.03 1.56-.66.77-1.24 2.01-1.09 3.19 1.15.09 2.32-.59 3.05-1.46z"/></svg>';
   var WINDOWS = '<svg class="mark-win" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 3h8v8H3zM13 3h8v8h-8zM3 13h8v8H3zM13 13h8v8h-8z"/></svg>';
 
-  var MAC = { url: BASE + "ChatterFix-macOS.dmg", label: "Download for macOS", icon: APPLE };
-  var WIN = { url: BASE + "ChatterFix-Windows.exe", label: "Download for Windows", icon: WINDOWS };
+  var MAC = { url: BASE + "ChatterFix.dmg", label: "Download for macOS", icon: APPLE };
+  var WIN = { url: BASE + "ChatterFix.exe", label: "Download for Windows", icon: WINDOWS };
 
   function detect() {
     var p = (navigator.userAgentData && navigator.userAgentData.platform) || "";
@@ -16,7 +16,14 @@
     return null; // unknown: leave buttons pointing at the Releases page
   }
 
-  var here = detect();
+  // Preview override for testing: ?os=win or ?os=mac forces a platform.
+  // Normal visitors have no such param and are detected automatically.
+  function forced() {
+    var m = /[?&]os=(win|mac)\b/i.exec(location.search);
+    return m ? (m[1].toLowerCase() === "win" ? WIN : MAC) : null;
+  }
+
+  var here = forced() || detect();
   if (here) {
     var there = here === MAC ? WIN : MAC;
 
@@ -42,6 +49,33 @@
       macStage.hidden = true;
       winStage.hidden = false;
     }
+  }
+
+  // Install switcher: default to the visitor's OS, and let them flip tabs.
+  var installTabs = document.querySelectorAll(".install-tab");
+  var installPanes = document.querySelectorAll(".install-pane");
+  if (installTabs.length && installPanes.length) {
+    var selectOS = function (os) {
+      installTabs.forEach(function (t) {
+        var on = t.getAttribute("data-os") === os;
+        t.setAttribute("aria-selected", on ? "true" : "false");
+      });
+      installPanes.forEach(function (p) {
+        p.hidden = p.getAttribute("data-os") !== os;
+      });
+    };
+    // Put the visitor's OS first in the switcher, matching the hero buttons.
+    if (here === WIN) {
+      var winTab = document.getElementById("tab-win");
+      var macTab = document.getElementById("tab-mac");
+      if (winTab && macTab && winTab.parentNode) {
+        winTab.parentNode.insertBefore(winTab, macTab);
+      }
+    }
+    selectOS(here === WIN ? "win" : "mac");
+    installTabs.forEach(function (t) {
+      t.addEventListener("click", function () { selectOS(t.getAttribute("data-os")); });
+    });
   }
 
   // Typing demo: several phrases typed on a chattering keyboard vs with ChatterFix.
@@ -132,4 +166,66 @@
       await sleep(650);
     }
   })();
+})();
+
+// Smooth open/close for the FAQ items. Native <details> snaps open, so we take
+// over the toggle and animate the element's height with the Web Animations API.
+// Falls back to the instant native behavior when reduced motion is asked for or
+// the API is missing.
+(function () {
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var items = document.querySelectorAll(".faq details");
+  if (reduce || !items.length || typeof document.body.animate !== "function") return;
+
+  var EASE = "cubic-bezier(.4, 0, .2, 1)";
+
+  items.forEach(function (el) {
+    var summary = el.querySelector("summary");
+    if (!summary) return;
+    var anim = null;
+    var state = ""; // "opening" | "closing" | ""
+
+    function chrome() {
+      var cs = getComputedStyle(el);
+      return parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom) +
+             parseFloat(cs.borderTopWidth) + parseFloat(cs.borderBottomWidth);
+    }
+
+    function done(open) {
+      if (open === false) el.open = false;
+      anim = null;
+      state = "";
+      el.style.height = "";
+      el.style.overflow = "";
+    }
+
+    function expand() {
+      state = "opening";
+      el.style.height = el.offsetHeight + "px";
+      el.open = true;
+      window.requestAnimationFrame(function () {
+        var start = el.offsetHeight;
+        var end = el.scrollHeight;
+        anim = el.animate({ height: [start + "px", end + "px"] }, { duration: 260, easing: EASE });
+        anim.onfinish = function () { done(true); };
+      });
+    }
+
+    function shrink() {
+      state = "closing";
+      var start = el.offsetHeight;
+      var end = summary.offsetHeight + chrome();
+      anim = el.animate({ height: [start + "px", end + "px"] }, { duration: 220, easing: EASE });
+      anim.onfinish = function () { done(false); };
+    }
+
+    summary.addEventListener("click", function (e) {
+      e.preventDefault();
+      el.style.overflow = "hidden";
+      var goingOpen = !el.open || state === "closing";
+      if (anim) anim.cancel();
+      if (goingOpen) expand();
+      else shrink();
+    });
+  });
 })();

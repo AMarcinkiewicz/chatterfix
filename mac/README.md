@@ -8,8 +8,8 @@ Intel), macOS 13 or newer.
 Requires the Xcode command-line tools (`xcode-select --install`).
 
 ```sh
-./build_app.sh          # compiles the universal ChatterFix.app
-./package_dmg.sh 1.0.0  # wraps it in a drag-to-Applications .dmg (optional)
+./build_app.sh     # compiles the universal ChatterFix.app
+./package_dmg.sh   # wraps it in ChatterFix.dmg, drag-to-Applications (optional)
 ```
 
 `build_app.sh` compiles for arm64 and x86_64, merges them with `lipo`, assembles

@@ -1,11 +1,11 @@
 #!/bin/bash
 # Packages ChatterFix.app into a distributable .dmg with a drag-to-Applications
-# layout. Run after build_app.sh.  Usage: ./package_dmg.sh [version]
+# layout. Run after build_app.sh.  Usage: ./package_dmg.sh
 set -euo pipefail
 cd "$(dirname "$0")"
 
-VERSION="${1:-1.0.0}"
-DMG="ChatterFix-${VERSION}-macOS.dmg"
+# Name matches what the site links to; the release tag carries the version.
+DMG="ChatterFix.dmg"
 
 if [ ! -d ChatterFix.app ]; then
     echo "ChatterFix.app not found — run ./build_app.sh first."

@@ -115,7 +115,7 @@ a { color: inherit; }
 }
 @keyframes type-caret-blink { 50% { opacity: 0; } }
 .lede {
-  font-size: 19px;
+  font-size: clamp(16px, 3.2vw, 19px);
   color: var(--ink-soft);
   max-width: 540px;
   margin: 0 auto 30px;
@@ -137,12 +137,12 @@ a { color: inherit; }
   color: #fff;
   text-decoration: none;
   font-size: 16px;
-  font-weight: 550;
+  font-weight: 500;
   padding: 13px 24px;
   border-radius: 999px;
-  transition: transform .12s ease, background .15s;
+  transition: background .18s ease;
 }
-.btn-primary:hover { background: #000; transform: translateY(-1px); }
+.btn-primary:hover { background: #30333b; }
 .btn-ico { display: inline-flex; align-items: center; }
 .btn-ico:empty { display: none; }
 .btn-ico svg { width: 16px; height: 16px; display: block; }
@@ -313,7 +313,7 @@ a { color: inherit; }
 
 .stage-win .context-menu {
   position: absolute;
-  right: 18px;
+  right: 64px;
   bottom: 54px;
   width: min(224px, calc(100% - 36px));
   background: #fbfbfb;
@@ -343,7 +343,7 @@ a { color: inherit; }
 .cm-sub {
   position: absolute;
   right: calc(100% + 4px);
-  top: -4px;
+  bottom: -116px;
   width: 168px;
   background: #fbfbfb;
   border: 1px solid #b6b6b6;
@@ -366,7 +366,7 @@ h2 {
   text-align: center;
 }
 .section-lede {
-  font-size: 18px;
+  font-size: clamp(15px, 3vw, 18px);
   color: var(--ink-soft);
   max-width: 620px;
   margin: 0 auto 34px;
@@ -414,43 +414,94 @@ h2 {
 }
 @keyframes blink { 50% { opacity: 0; } }
 
-/* How it works points */
-.points {
+/* Features grid */
+.feature-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 34px;
-  max-width: 900px;
-  margin: 0 auto;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  max-width: 960px;
+  margin: 48px auto 0;
+  scroll-margin-top: 24px;
 }
-.point h3 { font-size: 18px; margin: 0 0 8px; letter-spacing: -0.01em; }
-.point p { margin: 0; color: var(--ink-soft); font-size: 15.5px; }
-
-/* Install */
-.install-cols {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
-  max-width: 840px;
-  margin: 0 auto;
+.feature {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 20px;
+  background: var(--bg);
 }
-.install-col h3 { font-size: 19px; margin: 0 0 14px; }
-.install-col ol { margin: 0 0 22px; padding-left: 20px; }
-.install-col li { margin-bottom: 10px; color: var(--ink-soft); font-size: 15.5px; }
-.install-col li strong { color: var(--ink); font-weight: 600; }
-.btn-quiet {
+.feature-ico {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  border: 1px solid var(--ink);
-  color: var(--ink);
-  text-decoration: none;
-  font-size: 15px;
-  font-weight: 550;
-  padding: 9px 18px;
-  border-radius: 999px;
-  transition: background .15s, color .15s;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--band);
+  color: #2b3140d4;
+  margin-bottom: 14px;
 }
-.btn-quiet:hover { background: var(--ink); color: #fff; }
+.feature-ico svg { width: 21px; height: 21px; display: block; }
+.feature h3 {
+  font-family: var(--font-head);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0 0 7px;
+}
+.feature p { margin: 0; color: var(--ink-soft); font-size: 14.5px; line-height: 1.5; }
+
+/* Install */
+/* Install: OS switcher (segmented tabs) above a single panel */
+#install h2 { margin-bottom: 20px; }
+.install-switch {
+  display: flex;
+  width: fit-content;
+  margin: 0 auto 26px;
+  padding: 4px;
+  gap: 4px;
+  background: var(--band);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+.install-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border: 0;
+  background: transparent;
+  color: var(--ink-soft);
+  font-family: var(--font-head);
+  font-size: 14.5px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  padding: 8px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: color .15s, background .15s, box-shadow .15s;
+}
+.install-tab:hover { color: var(--ink); }
+.install-tab[aria-selected="true"] {
+  background: var(--bg);
+  color: var(--ink);
+  box-shadow: 0 1px 3px rgba(20, 24, 33, 0.10);
+}
+.install-tab svg { width: 15px; height: 15px; display: block; }
+.install-tab .mark-apple { margin-top: -2px; }
+.install-tab .mark-win { width: 14px; height: 14px; }
+
+.install-panel {
+  max-width: 558px;
+  margin: 0 auto;
+  background: #f3f4f680;
+  border: 1px solid #e6e7eabd;
+  border-radius: var(--radius);
+  padding: 28px 30px;
+}
+.install-pane[hidden] { display: none; }
+.install-pane ol { margin: 0 0 22px; padding-left: 20px; }
+.install-pane li { margin-bottom: 10px; color: var(--ink-soft); font-size: 15.5px; }
+.install-pane li:last-child { margin-bottom: 0; }
+.install-pane li strong { color: var(--ink); font-weight: 600; }
 .trust {
   margin: 40px auto 0;
   font-size: 15px;
@@ -470,8 +521,10 @@ h2 {
   cursor: pointer;
   list-style: none;
   padding: 15px 28px 15px 2px;
+  font-family: var(--font-head);
   font-size: 17px;
-  font-weight: 550;
+  font-weight: 600;
+  letter-spacing: -0.01em;
   position: relative;
 }
 .faq summary::-webkit-details-marker { display: none; }
@@ -494,12 +547,18 @@ h2 {
 
 /* Footer */
 .footer {
-  background: var(--navy);
+  background: var(--ink);
   color: #c7ccd6;
   padding: 44px 0;
-  margin-top: 8px;
+  margin-top: 40px;
 }
-.footer-inner { display: flex; flex-direction: column; gap: 16px; }
+.footer-inner {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
 .footer-brand {
   display: flex; align-items: center; gap: 9px;
   color: #fff; font-weight: 600; font-size: 17px;
@@ -511,17 +570,27 @@ h2 {
 .footer-links a:hover { color: #fff; }
 
 /* Responsive (desktop is the priority; this keeps small screens usable) */
+@media (max-width: 900px) {
+  .feature-grid { grid-template-columns: repeat(2, 1fr); }
+}
 @media (max-width: 720px) {
   :root { --gutter: 20px; }
   .nav-links { gap: 16px; }
   .nav-links a:not(:last-child) { display: none; }
-  .points { grid-template-columns: 1fr; gap: 26px; text-align: center; }
-  .install-cols { grid-template-columns: 1fr; gap: 32px; }
+  .feature-grid { grid-template-columns: 1fr; }
   .demo-row { flex-direction: column; align-items: flex-start; gap: 4px; }
   .demo-label { width: auto; }
   main section { padding: 48px 0; }
+  main section.hero { padding-top: 72px; padding-bottom: 48px; }
+  .footer { margin-top: 28px; }
   /* Simplify the Mac mockup on small screens: centered menu, no fly-out */
   .menu { transform: translateX(-50%); }
   .mb-glyph { transform: none; }
   .submenu-pop, .cm-sub { display: none; }
+  .stage-win .context-menu { right: 18px; bottom: 54px; }
+}
+
+@media (max-width: 480px) {
+  .footer-inner { flex-direction: column; align-items: center; text-align: center; gap: 18px; }
+  .footer-links { justify-content: center; }
 }

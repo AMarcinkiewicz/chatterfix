@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ChatterFix: Stop your keyboard from double typing</title>
-<meta name="description" content="ChatterFix is a free, open-source tool that fixes keyboard chatter, when a worn key registers two presses from a single tap. For macOS and Windows. No ads, no account, no tracking.">
+<meta name="description" content="ChatterFix is a free tool that fixes keyboard chatter, when a worn key registers two presses from a single tap. For macOS and Windows. No ads, no account, no tracking.">
 <link rel="canonical" href="https://chatterfix.app/">
 <link rel="icon" href="favicon-32.png" sizes="32x32">
 <link rel="icon" href="icon-512.png" sizes="512x512">
@@ -12,7 +12,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://chatterfix.app/">
 <meta property="og:title" content="ChatterFix: Stop your keyboard from double typing">
-<meta property="og:description" content="A free, open-source fix for keyboard chatter (double keypresses) on macOS and Windows.">
+<meta property="og:description" content="A free fix for keyboard chatter (double keypresses) on macOS and Windows.">
 <meta property="og:image" content="https://chatterfix.app/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preload" href="fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -24,7 +24,7 @@
   "name": "ChatterFix",
   "operatingSystem": "macOS 13+, Windows 10, Windows 11",
   "applicationCategory": "UtilitiesApplication",
-  "description": "A free, open-source tool that fixes keyboard chatter, when a worn or dirty key registers two presses from a single tap.",
+  "description": "A free tool that fixes keyboard chatter, when a worn or dirty key registers two presses from a single tap.",
   "url": "https://chatterfix.app/",
   "downloadUrl": "https://github.com/AMarcinkiewicz/chatterfix/releases/latest",
   "softwareVersion": "1.0.0",
@@ -41,7 +41,7 @@
     <span>ChatterFix</span>
   </a>
   <nav class="nav-links">
-    <a href="#how">How it works</a>
+    <a href="#what">How it works</a>
     <a href="#install">Install</a>
     <a href="#faq">FAQ</a>
     <a href="https://github.com/AMarcinkiewicz/chatterfix">GitHub</a>
@@ -70,7 +70,7 @@
       </a>
     </div>
     <p class="microcopy">
-      Free and open source. macOS 13+ (Intel and Apple Silicon) and Windows 10 / 11.
+      Free, with the source on GitHub. macOS 13+ (Intel and Apple Silicon) and Windows 10 / 11.
     </p>
 
     <!-- macOS menu-bar mockup (default; shown when OS is Mac or unknown) -->
@@ -167,46 +167,34 @@
     </div>
   </section>
 
-  <section class="wrap" id="how">
-    <h2>How it works</h2>
-    <div class="points">
-      <div class="point">
-        <h3>No delay</h3>
-        <p>Real keystrokes pass straight through. No buffering, no lag, no
-        change to how typing or gaming feels.</p>
-      </div>
-      <div class="point">
-        <h3>No keylogging</h3>
-        <p>It checks timing, not what you type. Nothing is logged or stored,
-        and the source is public.</p>
-      </div>
-      <div class="point">
-        <h3>Your call</h3>
-        <p>Set the sensitivity, see which keys chatter, pause it, or launch it
-        at login. All from the menu bar.</p>
-      </div>
-    </div>
-  </section>
-
   <section id="install">
     <div class="wrap">
-      <h2>Install in under a minute</h2>
-      <div class="install-cols">
-        <div class="install-col">
-          <h3>macOS</h3>
+      <h2>Install ChatterFix</h2>
+      <div class="install-switch" role="tablist" aria-label="Choose your platform">
+        <button class="install-tab" type="button" role="tab" data-os="mac" id="tab-mac" aria-controls="install-mac" aria-selected="true">
+          <svg class="mark-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 12.04c-.03-2.6 2.12-3.84 2.22-3.9-1.21-1.78-3.09-2.02-3.78-2.05-1.61-.16-3.14.94-3.95.94-.81 0-2.07-.92-3.4-.9-1.75.03-3.36 1.02-4.26 2.58-1.82 3.15-.46 7.81 1.3 10.37.86 1.25 1.89 2.66 3.24 2.61 1.3-.05 1.79-.84 3.36-.84 1.57 0 2.01.84 3.39.81 1.4-.03 2.29-1.28 3.15-2.54.99-1.46 1.4-2.87 1.42-2.94-.03-.02-2.73-1.05-2.76-4.16zM14.53 4.62c.72-.87 1.2-2.08 1.07-3.29-1.03.04-2.29.69-3.03 1.56-.66.77-1.24 2.01-1.09 3.19 1.15.09 2.32-.59 3.05-1.46z"/></svg>
+          macOS
+        </button>
+        <button class="install-tab" type="button" role="tab" data-os="win" id="tab-win" aria-controls="install-win" aria-selected="false">
+          <svg class="mark-win" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 3h8v8H3zM13 3h8v8h-8zM3 13h8v8H3zM13 13h8v8h-8z"/></svg>
+          Windows
+        </button>
+      </div>
+      <div class="install-panel">
+        <div class="install-pane" data-os="mac" id="install-mac" role="tabpanel" aria-labelledby="tab-mac">
           <ol>
             <li>Open the .dmg and drag ChatterFix into Applications.</li>
             <li>First launch: right-click the app and choose <strong>Open</strong>
               to get past the "unverified developer" notice.</li>
             <li>Allow Accessibility when asked. Filtering starts on its own.</li>
+            <li>Turn on Start at Login from the menu bar to run it every boot.</li>
           </ol>
-          <a class="btn-quiet" href="https://github.com/AMarcinkiewicz/chatterfix/releases/latest/download/ChatterFix-macOS.dmg">
+          <a class="btn-primary" href="https://github.com/AMarcinkiewicz/chatterfix/releases/latest/download/ChatterFix.dmg">
             <span class="btn-ico"><svg class="mark-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 12.04c-.03-2.6 2.12-3.84 2.22-3.9-1.21-1.78-3.09-2.02-3.78-2.05-1.61-.16-3.14.94-3.95.94-.81 0-2.07-.92-3.4-.9-1.75.03-3.36 1.02-4.26 2.58-1.82 3.15-.46 7.81 1.3 10.37.86 1.25 1.89 2.66 3.24 2.61 1.3-.05 1.79-.84 3.36-.84 1.57 0 2.01.84 3.39.81 1.4-.03 2.29-1.28 3.15-2.54.99-1.46 1.4-2.87 1.42-2.94-.03-.02-2.73-1.05-2.76-4.16zM14.53 4.62c.72-.87 1.2-2.08 1.07-3.29-1.03.04-2.29.69-3.03 1.56-.66.77-1.24 2.01-1.09 3.19 1.15.09 2.32-.59 3.05-1.46z"/></svg></span>
             <span>Download for macOS</span>
           </a>
         </div>
-        <div class="install-col">
-          <h3>Windows</h3>
+        <div class="install-pane" data-os="win" id="install-win" role="tabpanel" aria-labelledby="tab-win" hidden>
           <ol>
             <li>Run ChatterFix.exe. No installer.</li>
             <li>If SmartScreen appears, click <strong>More info</strong>, then
@@ -214,7 +202,7 @@
             <li>It lands in the system tray and starts working right away.</li>
             <li>Turn on Start at Login from the tray menu to run it every boot.</li>
           </ol>
-          <a class="btn-quiet" href="https://github.com/AMarcinkiewicz/chatterfix/releases/latest/download/ChatterFix-Windows.exe">
+          <a class="btn-primary" href="https://github.com/AMarcinkiewicz/chatterfix/releases/latest/download/ChatterFix.exe">
             <span class="btn-ico"><svg class="mark-win" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 3h8v8H3zM13 3h8v8h-8zM3 13h8v8H3zM13 13h8v8h-8z"/></svg></span>
             <span>Download for Windows</span>
           </a>
@@ -234,37 +222,39 @@
     <div class="faq">
       <details>
         <summary>Does it record what I type?</summary>
-        <p>No. It only checks key timing to spot a bounce, and stores nothing.
-        The code is public if you want to confirm it.</p>
+        <p>No. It only looks at key timing, never what you type. Nothing is
+        stored, and the code is public.</p>
       </details>
       <details>
         <summary>Will it add lag or affect gaming?</summary>
-        <p>No lag. Real presses pass instantly, and held keys or different-key
-        combos are never touched. The only edge case is tapping one key faster
-        than the threshold, which you can lower before playing. Games with
-        kernel-level anti-cheat read input below ChatterFix, so it does not
-        apply inside those.</p>
+        <p>No added lag, real presses register instantly. The one catch is a key
+        you hold down that chatters. Hold W to move while the W switch chatters,
+        and ChatterFix may block the stray repeat, which the game can read as you
+        letting go, so you briefly stop. If a movement key chatters, lower the
+        sensitivity or pause ChatterFix while you play. Games with kernel-level
+        anti-cheat sit below ChatterFix, so it has no effect there anyway.</p>
       </details>
       <details>
         <summary>Which keys does it fix?</summary>
-        <p>Any normal key. The Blocked Keys list shows which of yours are
-        misbehaving. Modifier keys like Shift and Ctrl are not filtered, but
-        chatter on those is rare.</p>
+        <p>Any normal key. The Blocked Keys list shows which of yours are acting
+        up. Modifiers like Shift and Ctrl are not filtered, but they rarely
+        chatter.</p>
       </details>
       <details>
         <summary>It caught a real double letter. What do I do?</summary>
-        <p>Lower the sensitivity one step. If chatter still gets through, raise
-        it one step. Standard (50 ms) suits most keyboards.</p>
+        <p>Lower the sensitivity one step. If chatter starts slipping through,
+        raise it back. Standard fits most keyboards.</p>
       </details>
       <details>
         <summary>Is it really free?</summary>
-        <p>Yes. Free and open source under the MIT license. No ads, no account,
-        no upsell.</p>
+        <p>Yes, free for everyone, at home or at work. No ads, no account. The
+        source is on GitHub under the MIT license with the Commons Clause, so
+        you can read it and fork it, but not sell it.</p>
       </details>
       <details>
         <summary>How do I remove it?</summary>
-        <p>On macOS, quit it and drag ChatterFix to the Trash. On Windows, quit
-        it and delete the .exe. Nothing is left behind.</p>
+        <p>macOS: quit it and drag ChatterFix to the Trash. Windows: quit it and
+        delete the .exe. Nothing is left behind.</p>
       </details>
     </div>
   </section>
@@ -280,7 +270,7 @@
     <div class="footer-links">
       <a href="https://github.com/AMarcinkiewicz/chatterfix">GitHub</a>
       <a href="https://github.com/AMarcinkiewicz/chatterfix/releases/latest">Releases</a>
-      <a href="https://github.com/AMarcinkiewicz/chatterfix/blob/master/LICENSE">MIT License</a>
+      <a href="https://github.com/AMarcinkiewicz/chatterfix/blob/master/LICENSE">License</a>
     </div>
   </div>
 </footer>
