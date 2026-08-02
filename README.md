@@ -6,7 +6,7 @@ a single tap. Think "hello" coming out as "helllo", or space bar double-spacing.
 
 **Download for macOS or Windows at [chatterfix.app](https://chatterfix.app)**
 
-Free forever, open source, no ads, no account, no tracking.
+Free forever, source available, no ads, no account, no tracking.
 
 ## What is keyboard chatter?
 
@@ -71,4 +71,9 @@ keyboard icon. Click it to:
 
 ## License
 
-[MIT](LICENSE). Free to use, change, and share.
+[MIT with the Commons Clause](LICENSE). Free to use, change, fork, and share,
+including at work and inside a company. The one thing you cannot do is sell it,
+or sell a product or service whose value comes substantially from it.
+
+Note that this is source available rather than open source in the OSI sense,
+because the no-selling condition is a restriction on use.
