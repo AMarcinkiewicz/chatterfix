@@ -22,4 +22,7 @@ taskkill /im ChatterFix.exe /f >nul 2>&1
 "%CSC%" /nologo /target:winexe /optimize+ /out:ChatterFix.exe /win32icon:ChatterFix.ico /res:ChatterFix.ico,ChatterFix.ico ChatterFix.cs
 if errorlevel 1 exit /b 1
 
+rem The Commons Clause requires the licence notice to travel with every copy.
+copy /y ..\LICENSE LICENSE.txt >nul
+
 echo Built ChatterFix.exe

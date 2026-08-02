@@ -16,6 +16,9 @@ STAGE="$(mktemp -d)"
 cp -R ChatterFix.app "$STAGE/"
 ln -s /Applications "$STAGE/Applications"
 
+# The Commons Clause requires the licence notice to travel with every copy.
+cp ../LICENSE "$STAGE/LICENSE.txt"
+
 rm -f "$DMG"
 hdiutil create -volname "ChatterFix" -srcfolder "$STAGE" -ov -format UDZO "$DMG" >/dev/null
 rm -rf "$STAGE"
