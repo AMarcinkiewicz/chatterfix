@@ -62,6 +62,23 @@ keyboard icon. Click it to:
   compiler already built into Windows. More detail in
   [windows/README.md](windows/README.md).
 
+## Updates
+
+ChatterFix checks `https://chatterfix.app/appcast.json` once a day. If a newer
+version is listed it offers to install it, with Install / Later / Skip This
+Version and an "install automatically" option. Nothing else is sent.
+
+The manifest is signed with an RSA key held offline, and the public half is
+compiled into both apps. An update is installed only if the manifest signature
+verifies *and* the downloaded file matches the SHA-256 in the manifest. This
+matters because ChatterFix holds Accessibility permission on macOS and a
+low-level keyboard hook on Windows, so an unverified update would be a
+keylogger delivery route.
+
+To publish a release: build both artifacts, upload them to a GitHub release
+tagged `vX.Y.Z`, then run `./tools/sign_release.sh X.Y.Z` and commit the
+regenerated `docs/appcast.json`.
+
 ## Limitations
 
 - Modifier keys (Shift, Cmd or Win, Ctrl, Alt or Option) travel a different

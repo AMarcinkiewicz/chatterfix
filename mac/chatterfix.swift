@@ -8,7 +8,7 @@ import Cocoa
 // less than the threshold is swallowed, along with its matching key-up.
 // Auto-repeat events (holding a key) are flagged by the system and always pass.
 
-let version = "1.0"
+let version = "1.0.0"
 
 var thresholdMs: Double = 50
 var dryRun = false

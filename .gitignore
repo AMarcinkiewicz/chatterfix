@@ -15,3 +15,9 @@ mac/AppIcon.iconset/
 # Windows build artifacts
 windows/ChatterFix.exe
 windows/*.pdb
+windows/LICENSE.txt
+
+# Release signing keys must never be committed. The private key lives in
+# ~/.chatterfix/ ; anyone holding it can publish an update to every install.
+*.pem
+*.key

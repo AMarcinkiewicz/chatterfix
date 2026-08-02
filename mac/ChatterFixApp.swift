@@ -126,6 +126,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
                 }
             }
         }
+
+        // Delayed so the update prompt never lands on top of the system's
+        // Accessibility permission dialog on a first launch.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
+            self?.checkForUpdates(userInitiated: false)
+        }
     }
 
     private func startTap() {
@@ -210,6 +216,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         let login = addItem("Start at Login", #selector(toggleLoginItem))
         login.state = SMAppService.mainApp.status == .enabled ? .on : .off
 
+        let auto = addItem("Install Updates Automatically", #selector(toggleAutoUpdate))
+        auto.state = UserDefaults.standard.bool(forKey: UpdateDefaults.auto) ? .on : .off
+        addItem("Check for Updates…", #selector(checkForUpdatesManually))
+
         menu.addItem(.separator())
         addItem("Quit ChatterFix", #selector(quit))
     }
@@ -252,6 +262,106 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         }
     }
 
+    @objc private func toggleAutoUpdate() {
+        let defaults = UserDefaults.standard
+        defaults.set(!defaults.bool(forKey: UpdateDefaults.auto), forKey: UpdateDefaults.auto)
+    }
+
+    @objc private func checkForUpdatesManually() {
+        checkForUpdates(userInitiated: true)
+    }
+
+    // Checked once a day in the background. A manual check always runs and
+    // reports "you're up to date" so the menu item never looks broken.
+    func checkForUpdates(userInitiated: Bool) {
+        let defaults = UserDefaults.standard
+        if !userInitiated {
+            let last = defaults.double(forKey: UpdateDefaults.lastCheck)
+            if Date().timeIntervalSince1970 - last < 86_400 { return }
+        }
+        defaults.set(Date().timeIntervalSince1970, forKey: UpdateDefaults.lastCheck)
+
+        fetchAppcast { appcast in
+            DispatchQueue.main.async {
+                guard let appcast = appcast else {
+                    if userInitiated { self.updateAlert("Couldn't check for updates",
+                        "ChatterFix couldn't reach the update server. Please try again later.") }
+                    return
+                }
+                guard isNewer(appcast.version, than: appVersion) else {
+                    if userInitiated { self.updateAlert("You're up to date",
+                        "ChatterFix \(appVersion) is the latest version.") }
+                    return
+                }
+                // A skipped version stays skipped until the user asks explicitly.
+                if !userInitiated,
+                   defaults.string(forKey: UpdateDefaults.skipped) == appcast.version { return }
+
+                if defaults.bool(forKey: UpdateDefaults.auto) {
+                    self.download(appcast, silent: true)
+                } else {
+                    self.offer(appcast)
+                }
+            }
+        }
+    }
+
+    private func offer(_ appcast: Appcast) {
+        NSApp.activate(ignoringOtherApps: true)
+        let alert = NSAlert()
+        alert.messageText = "ChatterFix \(appcast.version) is available"
+        alert.informativeText = """
+            You have \(appVersion). Installing takes a few seconds and ChatterFix \
+            will reopen automatically.
+            """
+        alert.addButton(withTitle: "Install Update")
+        alert.addButton(withTitle: "Remind Me Later")
+        alert.addButton(withTitle: "Skip This Version")
+
+        let auto = NSButton(checkboxWithTitle: "Install updates automatically from now on",
+                            target: nil, action: nil)
+        auto.state = UserDefaults.standard.bool(forKey: UpdateDefaults.auto) ? .on : .off
+        alert.accessoryView = auto
+
+        let response = alert.runModal()
+        UserDefaults.standard.set(auto.state == .on, forKey: UpdateDefaults.auto)
+
+        switch response {
+        case .alertFirstButtonReturn:
+            download(appcast, silent: false)
+        case .alertThirdButtonReturn:
+            UserDefaults.standard.set(appcast.version, forKey: UpdateDefaults.skipped)
+        default:
+            break // Remind Me Later: the daily check will offer it again.
+        }
+    }
+
+    private func download(_ appcast: Appcast, silent: Bool) {
+        downloadAndVerify(appcast) { dmg in
+            DispatchQueue.main.async {
+                guard let dmg = dmg else {
+                    if !silent { self.updateAlert("Update failed",
+                        "The download couldn't be verified, so nothing was installed.") }
+                    return
+                }
+                if !installUpdate(dmg: dmg) {
+                    if !silent { self.updateAlert("Update failed",
+                        "ChatterFix couldn't install the update.") }
+                    return
+                }
+                NSApp.terminate(nil) // the installer script relaunches the new build
+            }
+        }
+    }
+
+    private func updateAlert(_ title: String, _ body: String) {
+        NSApp.activate(ignoringOtherApps: true)
+        let alert = NSAlert()
+        alert.messageText = title
+        alert.informativeText = body
+        alert.runModal()
+    }
+
     @objc private func openAccessibilitySettings() {
         let url = URL(string:
             "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility")!
@@ -263,8 +373,15 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     }
 }
 
-let app = NSApplication.shared
-app.setActivationPolicy(.accessory)
-let delegate = AppDelegate()
-app.delegate = delegate
-app.run()
+// An explicit entry point rather than top-level code: Swift only allows the
+// latter in a file named main.swift, and the app is built from several files.
+@main
+enum ChatterFix {
+    static func main() {
+        let app = NSApplication.shared
+        app.setActivationPolicy(.accessory)
+        let delegate = AppDelegate()   // NSApplication.delegate is weak; run() keeps this alive
+        app.delegate = delegate
+        app.run()
+    }
+}
