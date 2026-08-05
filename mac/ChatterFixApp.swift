@@ -248,11 +248,18 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         let defaults = UserDefaults.standard
         guard !defaults.bool(forKey: "didDefaultLoginItem") else { return }
 
-        // Registration records wherever the bundle currently sits, so doing it
-        // while running from the mounted .dmg would point login at a path that
-        // is gone by the next boot. Leave the marker unset so it applies once
-        // the app has been dragged to Applications.
-        guard !Bundle.main.bundlePath.hasPrefix("/Volumes/") else { return }
+        // Registration records wherever the bundle currently sits, so only do it
+        // from somewhere that will still exist at the next boot. This is a
+        // whitelist rather than a list of bad locations because the bad ones are
+        // not guessable: opening the app straight from the .dmg makes macOS
+        // translocate it, running it from a randomized read-only copy under
+        // /private/var/folders/.../AppTranslocation/ that neither looks like
+        // /Volumes nor survives being closed. A login item recorded there points
+        // at nothing every boot afterwards. Leaving the marker unset means this
+        // applies later, once the app has been dragged to Applications.
+        let path = Bundle.main.bundlePath
+        let installedLocations = ["/Applications/", NSHomeDirectory() + "/Applications/"]
+        guard installedLocations.contains(where: { path.hasPrefix($0) }) else { return }
 
         let service = SMAppService.mainApp
         guard service.status != .enabled else {
