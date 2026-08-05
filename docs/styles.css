@@ -502,6 +502,38 @@ h2 {
 .install-pane li { margin-bottom: 10px; color: var(--ink-soft); font-size: 15.5px; }
 .install-pane li:last-child { margin-bottom: 0; }
 .install-pane li strong { color: var(--ink); font-weight: 600; }
+
+/* Finder right-click menu, reusing the hero mockup's own menu styling so the
+   two read as the same drawing. The hero .menu is absolutely positioned inside
+   its stage; here it sits in the flow instead. */
+.install-figure { margin: 0 0 22px; }
+.install-figure .menu-inline {
+  position: static;
+  transform: none;
+  margin: 0 auto;
+  width: 224px;
+}
+.install-figure figcaption {
+  margin: 14px auto 0;
+  max-width: 400px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.install-figure figcaption strong { color: var(--ink); font-weight: 600; }
+.install-note {
+  margin: 0 0 22px;
+  padding: 14px 16px;
+  background: #f6f7f880;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+.install-note em { font-style: normal; color: var(--ink); }
+.install-note strong { color: var(--ink); font-weight: 600; }
 .trust {
   margin: 40px auto 0;
   font-size: 15px;

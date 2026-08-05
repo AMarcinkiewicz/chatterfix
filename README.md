@@ -35,12 +35,27 @@ Get the latest build from [chatterfix.app](https://chatterfix.app) or the
   macOS 13 or newer.
 - **Windows:** `.exe` for Windows 10 and 11. No installer, nothing else to set up.
 
-On macOS the first launch asks for the Accessibility permission, which it needs
-to watch for chatter. On both systems you can turn on Start at Login so it runs
-quietly in the background. Because the downloads are not signed with a paid
-certificate yet, you will see a one-time "unverified developer" (macOS) or
-SmartScreen (Windows) notice. The per-platform notes below explain how to get
-past it.
+### First launch
+
+The downloads are not signed with a paid certificate, so both systems show a
+one-time warning. Neither means anything is wrong with the app.
+
+**macOS.** Drag ChatterFix into Applications, then **right-click it and choose
+Open**, and click Open again in the box that appears. A plain double-click will
+not work the first time: it shows "ChatterFix can't be opened because Apple
+cannot check it for malicious software", adds "This software needs to be
+updated", and offers only an OK button with no way through. There is nothing to
+update. That is simply what macOS says about any app without a paid Apple
+certificate, and the right-click route is the way past it. Once opened this way
+the app launches normally from then on.
+
+**Windows.** SmartScreen shows a blue "Windows protected your PC" box. Click
+**More info**, then **Run anyway** — the button only appears after More info,
+which is easy to miss.
+
+The first launch on macOS then asks for the Accessibility permission, which it
+needs to watch for chatter. On both systems you can turn on Start at Login so it
+runs quietly in the background.
 
 ## How to use it
 
