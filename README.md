@@ -53,7 +53,7 @@ is the only route past it. Once opened that way the app launches normally from
 then on, Launchpad and Dock included.
 
 **Windows.** SmartScreen shows a blue "Windows protected your PC" box. Click
-**More info**, then **Run anyway** — the button only appears after More info,
+**More info**, then **Run anyway**. The button only appears after More info,
 which is easy to miss.
 
 The first launch on macOS then asks for the Accessibility permission, which it

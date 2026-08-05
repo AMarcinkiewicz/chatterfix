@@ -1,4 +1,4 @@
-// ChatterFix — keyboard chatter (double-press) filter, tray-only.
+// ChatterFix: keyboard chatter (double-press) filter, tray-only.
 // Build: build.cmd (csc.exe, .NET Framework 4.8, no external dependencies).
 
 using System;
@@ -91,7 +91,7 @@ namespace ChatterFix
         {
             LoadSettings();
 
-            _statusItem = new ToolStripMenuItem("ChatterFix: On — no chatter yet");
+            _statusItem = new ToolStripMenuItem("ChatterFix: On, no chatter yet");
             _statusItem.Enabled = false;
 
             _pauseItem = new ToolStripMenuItem("Pause Filtering", null, OnPauseResume);
@@ -200,9 +200,9 @@ namespace ChatterFix
             if (_paused)
                 _statusItem.Text = "ChatterFix: Paused";
             else if (_blockedTotal == 0)
-                _statusItem.Text = "ChatterFix: On — no chatter yet";
+                _statusItem.Text = "ChatterFix: On, no chatter yet";
             else
-                _statusItem.Text = "ChatterFix: On — " + _blockedTotal +
+                _statusItem.Text = "ChatterFix: On, " + _blockedTotal +
                     (_blockedTotal == 1 ? " double-press blocked" : " double-presses blocked");
 
             _pauseItem.Text = _paused ? "Resume Filtering" : "Pause Filtering";
@@ -238,7 +238,7 @@ namespace ChatterFix
             foreach (KeyValuePair<int, long> hit in hits)
             {
                 ToolStripMenuItem item = new ToolStripMenuItem(
-                    KeyName(hit.Key) + " — " + hit.Value + "×");
+                    KeyName(hit.Key) + ": " + hit.Value + "×");
                 item.Enabled = false;
                 _blockedKeysItem.DropDownItems.Add(item);
             }

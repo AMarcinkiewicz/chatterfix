@@ -1,7 +1,7 @@
 import Cocoa
 import ServiceManagement
 
-// ChatterFix — menu bar app that suppresses keyboard chatter (spurious
+// ChatterFix: menu bar app that suppresses keyboard chatter (spurious
 // duplicate keypresses) on macOS.
 //
 // A chattering switch produces a key-down almost immediately after the key-up
@@ -167,9 +167,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         } else if paused {
             status = "Paused"
         } else if totalSuppressed == 0 {
-            status = "On — no chatter yet"
+            status = "On, no chatter yet"
         } else {
-            status = "On — \(totalSuppressed) double-press\(totalSuppressed == 1 ? "" : "es") blocked"
+            status = "On, \(totalSuppressed) double-press\(totalSuppressed == 1 ? "" : "es") blocked"
         }
         menu.addItem(NSMenuItem(title: "ChatterFix: \(status)", action: nil, keyEquivalent: ""))
 
@@ -199,7 +199,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
                                          action: nil, keyEquivalent: ""))
         } else {
             for (code, count) in suppressedCount.sorted(by: { $0.value > $1.value }) {
-                statsMenu.addItem(NSMenuItem(title: "\(keyName(code)) — \(count)×",
+                statsMenu.addItem(NSMenuItem(title: "\(keyName(code)): \(count)×",
                                              action: nil, keyEquivalent: ""))
             }
         }

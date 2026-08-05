@@ -1,4 +1,4 @@
-# make-icon.ps1 — renders the ChatterFix logo and packs ChatterFix.ico (16/32/48/256).
+# make-icon.ps1: renders the ChatterFix logo and packs ChatterFix.ico (16/32/48/256).
 # Spec coordinates are bottom-left origin on a 1024x1024 canvas; GDI+ is top-left,
 # so every y here is converted as: yTop = 1024 - ySpec - height.
 

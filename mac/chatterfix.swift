@@ -1,6 +1,6 @@
 import Cocoa
 
-// chatterfix — suppress keyboard chatter (spurious duplicate keypresses) on macOS.
+// chatterfix: suppress keyboard chatter (spurious duplicate keypresses) on macOS.
 //
 // A chattering switch produces a key-down almost immediately after the key-up
 // of the same key. Real typing (even fast double letters like "ll") leaves a
@@ -125,7 +125,7 @@ let tapCallback: CGEventTapCallBack = { _, type, event, _ in
 
 func printUsage() {
     print("""
-    chatterfix \(version) — keyboard chatter (double keypress) filter for macOS
+    chatterfix \(version) - keyboard chatter (double keypress) filter for macOS
 
     Usage: chatterfix [options]
 
@@ -244,7 +244,7 @@ var scope = "all keys"
 if let watched = watchedKeys {
     scope = watched.map(keyName).sorted().joined(separator: ", ")
 }
-log("chatterfix \(version) running — threshold \(Int(thresholdMs)) ms, " +
+log("chatterfix \(version) running, threshold \(Int(thresholdMs)) ms, " +
     "keys: \(scope)\(dryRun ? " [dry-run: logging only]" : "")")
 log("Press Ctrl+C to quit and print stats.")
 

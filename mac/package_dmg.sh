@@ -8,7 +8,7 @@ cd "$(dirname "$0")"
 DMG="ChatterFix.dmg"
 
 if [ ! -d ChatterFix.app ]; then
-    echo "ChatterFix.app not found — run ./build_app.sh first."
+    echo "ChatterFix.app not found. Run ./build_app.sh first."
     exit 1
 fi
 

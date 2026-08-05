@@ -36,7 +36,7 @@ which Apple Silicon requires in order to run it.
   is blocked by Gatekeeper on first launch. Double-clicking it (or launching it
   from Launchpad) reports that "Apple cannot check it for malicious software"
   and that "this software needs to be updated", offering only Show in Finder and
-  OK — a dead end, and misleading, since there is nothing to update. Right-click
+  OK. That is a dead end, and misleading, since there is nothing to update. Right-click
   the app and choose Open instead: the same warning appears, but with an Open
   button that runs it and records the exception. Notarizing with a paid Apple
   Developer account would remove the warning entirely.

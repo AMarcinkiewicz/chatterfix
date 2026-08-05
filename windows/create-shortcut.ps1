@@ -1,4 +1,4 @@
-# create-shortcut.ps1 — puts a ChatterFix shortcut on the desktop.
+# create-shortcut.ps1: puts a ChatterFix shortcut on the desktop.
 $ErrorActionPreference = 'Stop'
 $exe = Join-Path $PSScriptRoot 'ChatterFix.exe'
 $desktop = [Environment]::GetFolderPath('Desktop')
