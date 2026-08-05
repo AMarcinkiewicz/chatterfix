@@ -33,12 +33,13 @@ which Apple Silicon requires in order to run it.
 - First launch asks for Accessibility (System Settings, then Privacy & Security,
   then Accessibility). Filtering starts on its own once you grant it.
 - The app is ad-hoc signed, not signed with a Developer ID, so a downloaded copy
-  is blocked by Gatekeeper on first launch. Double-clicking it reports that
-  "Apple cannot check it for malicious software" and that "this software needs
-  to be updated", with only an OK button — a dead end, and misleading, since
-  there is nothing to update. Right-click the app and choose Open instead, which
-  offers a real Open button and records the exception. Notarizing with a paid
-  Apple Developer account would remove the warning entirely.
+  is blocked by Gatekeeper on first launch. Double-clicking it (or launching it
+  from Launchpad) reports that "Apple cannot check it for malicious software"
+  and that "this software needs to be updated", offering only Show in Finder and
+  OK — a dead end, and misleading, since there is nothing to update. Right-click
+  the app and choose Open instead: the same warning appears, but with an Open
+  button that runs it and records the exception. Notarizing with a paid Apple
+  Developer account would remove the warning entirely.
 - A locally built copy is not quarantined, so it opens without any of that. Only
   copies downloaded through a browser carry the `com.apple.quarantine` attribute
   that triggers Gatekeeper, which is why testing a real download differs from

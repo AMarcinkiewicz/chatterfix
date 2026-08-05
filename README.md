@@ -41,13 +41,16 @@ The downloads are not signed with a paid certificate, so both systems show a
 one-time warning. Neither means anything is wrong with the app.
 
 **macOS.** Drag ChatterFix into Applications, then **right-click it and choose
-Open**, and click Open again in the box that appears. A plain double-click will
-not work the first time: it shows "ChatterFix can't be opened because Apple
-cannot check it for malicious software", adds "This software needs to be
-updated", and offers only an OK button with no way through. There is nothing to
-update. That is simply what macOS says about any app without a paid Apple
-certificate, and the right-click route is the way past it. Once opened this way
-the app launches normally from then on.
+Open**. The warning appears again but now has an Open button; click it.
+
+A plain double-click will not work the first time, and neither will Launchpad.
+Both report "ChatterFix can't be opened because Apple cannot check it for
+malicious software", add "This software needs to be updated. Contact the
+developer for more information", and offer only Show in Finder and OK, neither
+of which opens anything. There is nothing to update. That is simply what macOS
+says about any app without a paid Apple certificate, and right-click then Open
+is the only route past it. Once opened that way the app launches normally from
+then on, Launchpad and Dock included.
 
 **Windows.** SmartScreen shows a blue "Windows protected your PC" box. Click
 **More info**, then **Run anyway** — the button only appears after More info,
