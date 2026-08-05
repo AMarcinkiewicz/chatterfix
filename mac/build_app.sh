@@ -6,9 +6,9 @@ cd "$(dirname "$0")"
 
 echo "Compiling ChatterFix (universal: arm64 + x86_64)..."
 swiftc -O -target arm64-apple-macos13.0 \
-    ChatterFixApp.swift Updater.swift -o ChatterFix_arm64 -framework Cocoa
+    ChatterFixApp.swift -o ChatterFix_arm64 -framework Cocoa
 swiftc -O -target x86_64-apple-macos13.0 \
-    ChatterFixApp.swift Updater.swift -o ChatterFix_x86_64 -framework Cocoa
+    ChatterFixApp.swift -o ChatterFix_x86_64 -framework Cocoa
 lipo -create ChatterFix_arm64 ChatterFix_x86_64 -output ChatterFix_exec
 rm -f ChatterFix_arm64 ChatterFix_x86_64
 

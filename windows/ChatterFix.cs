@@ -86,8 +86,6 @@ namespace ChatterFix
         readonly ToolStripMenuItem _sensitivityItem;
         readonly ToolStripMenuItem _blockedKeysItem;
         readonly ToolStripMenuItem _startAtLoginItem;
-        readonly ToolStripMenuItem _autoUpdateItem;
-        Timer _startupUpdateTimer;
 
         public TrayApp()
         {
@@ -110,8 +108,6 @@ namespace ChatterFix
             _blockedKeysItem = new ToolStripMenuItem("Blocked Keys");
 
             _startAtLoginItem = new ToolStripMenuItem("Start at Login", null, OnToggleStartAtLogin);
-            _autoUpdateItem = new ToolStripMenuItem("Install Updates Automatically",
-                null, OnToggleAutoUpdate);
 
             _menu = new ContextMenuStrip();
             _menu.Items.Add(_statusItem);
@@ -121,8 +117,6 @@ namespace ChatterFix
             _menu.Items.Add(_blockedKeysItem);
             _menu.Items.Add(new ToolStripSeparator());
             _menu.Items.Add(_startAtLoginItem);
-            _menu.Items.Add(_autoUpdateItem);
-            _menu.Items.Add(new ToolStripMenuItem("Check for Updates...", null, OnCheckUpdates));
             _menu.Items.Add(new ToolStripSeparator());
             _menu.Items.Add(new ToolStripMenuItem("Quit ChatterFix", null, OnQuit));
             _menu.Opening += OnMenuOpening;
@@ -135,21 +129,6 @@ namespace ChatterFix
             _trayIcon.Visible = true;
 
             InstallHook();
-
-            // Deferred: SynchronizationContext.Current is not established until the
-            // message loop is running, and this constructor runs before it.
-            _startupUpdateTimer = new Timer();
-            _startupUpdateTimer.Interval = 5000;
-            _startupUpdateTimer.Tick += OnStartupUpdateCheck;
-            _startupUpdateTimer.Start();
-        }
-
-        void OnStartupUpdateCheck(object sender, EventArgs e)
-        {
-            _startupUpdateTimer.Stop();
-            _startupUpdateTimer.Dispose();
-            _startupUpdateTimer = null;
-            StartUpdateCheck(false);
         }
 
         // ---- the filter ----
@@ -234,7 +213,6 @@ namespace ChatterFix
             RebuildBlockedKeysMenu();
 
             _startAtLoginItem.Checked = IsStartAtLoginEnabled();
-            _autoUpdateItem.Checked = Updater.AutoInstall;
         }
 
         void RebuildBlockedKeysMenu()
@@ -291,34 +269,6 @@ namespace ChatterFix
         void OnToggleStartAtLogin(object sender, EventArgs e)
         {
             SetStartAtLogin(!IsStartAtLoginEnabled());
-        }
-
-        void OnToggleAutoUpdate(object sender, EventArgs e)
-        {
-            Updater.AutoInstall = !Updater.AutoInstall;
-        }
-
-        void OnCheckUpdates(object sender, EventArgs e)
-        {
-            StartUpdateCheck(true);
-        }
-
-        // The check runs off the UI thread so a slow or unreachable server never
-        // freezes the tray menu; results are posted back through the UI thread's
-        // synchronization context so dialogs are always shown on it.
-        void StartUpdateCheck(bool userInitiated)
-        {
-            SynchronizationContext ui = SynchronizationContext.Current;
-            Thread t = new Thread(delegate()
-            {
-                Updater.Check(userInitiated, delegate(Action action)
-                {
-                    if (ui != null) ui.Post(delegate(object _) { action(); }, null);
-                    else action();
-                });
-            });
-            t.IsBackground = true;
-            t.Start();
         }
 
         void OnQuit(object sender, EventArgs e)
