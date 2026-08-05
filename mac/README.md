@@ -45,3 +45,11 @@ which Apple Silicon requires in order to run it.
   that triggers Gatekeeper, which is why testing a real download differs from
   testing your own build.
 - macOS treats a rebuild as a new app, so re-grant Accessibility if needed.
+- Start at Login registers itself on first run via `SMAppService`, guarded by a
+  `didDefaultLoginItem` flag in `UserDefaults` so it is set once rather than
+  enforced on every launch. It is skipped while the bundle is running from
+  `/Volumes`, since registering from the mounted .dmg would record a path that
+  no longer exists at boot; the flag stays unset so it applies after the app is
+  moved to Applications. Running a dev build registers the same bundle ID as an
+  installed copy, so `defaults delete com.alex.chatterfix.app didDefaultLoginItem`
+  is how to re-test the first-run path.

@@ -96,6 +96,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         if let saved = UserDefaults.standard.object(forKey: "thresholdMs") as? Double {
             thresholdMs = saved
         }
+        enableLoginItemOnFirstRun()
 
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
         if let button = statusItem.button {
@@ -233,6 +234,40 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         guard let ms = sender.representedObject as? Double else { return }
         thresholdMs = ms
         UserDefaults.standard.set(ms, forKey: "thresholdMs")
+    }
+
+    // Start at Login is on by default, but only ever set once. The marker is
+    // written on success rather than on attempt, which gives two things: a user
+    // who turns it off is never overridden on the next launch, and a first run
+    // where registration failed is retried instead of silently losing it.
+    //
+    // "thresholdMs" cannot serve as the marker: it is written only when the
+    // sensitivity is changed, so anyone leaving it at the default would look
+    // like a first run forever and have the setting forced back on every time.
+    private func enableLoginItemOnFirstRun() {
+        let defaults = UserDefaults.standard
+        guard !defaults.bool(forKey: "didDefaultLoginItem") else { return }
+
+        // Registration records wherever the bundle currently sits, so doing it
+        // while running from the mounted .dmg would point login at a path that
+        // is gone by the next boot. Leave the marker unset so it applies once
+        // the app has been dragged to Applications.
+        guard !Bundle.main.bundlePath.hasPrefix("/Volumes/") else { return }
+
+        let service = SMAppService.mainApp
+        guard service.status != .enabled else {
+            defaults.set(true, forKey: "didDefaultLoginItem")
+            return
+        }
+        do {
+            try service.register()
+            defaults.set(true, forKey: "didDefaultLoginItem")
+        } catch {
+            // Deliberately silent. This runs seconds after Gatekeeper has
+            // already accused the app of being malware, and an error dialog
+            // about a convenience setting would land badly. The menu item still
+            // reflects the real state and can be switched on by hand.
+        }
     }
 
     @objc private func toggleLoginItem() {

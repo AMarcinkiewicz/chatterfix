@@ -57,8 +57,13 @@ then on, Launchpad and Dock included.
 which is easy to miss.
 
 The first launch on macOS then asks for the Accessibility permission, which it
-needs to watch for chatter. On both systems you can turn on Start at Login so it
-runs quietly in the background.
+needs to watch for chatter.
+
+Both versions turn on Start at Login for themselves the first time they run, so
+chatter stays fixed after a reboot without anyone having to think about it. It
+is set once, not enforced: switch it off and it stays off. On macOS the entry is
+visible under System Settings, then General, then Login Items, and on Windows
+under the `Run` key for the current user only.
 
 ## How to use it
 
@@ -70,7 +75,7 @@ keyboard icon. Click it to:
   count as chatter. Standard (50 ms) is a good starting point. If doubles still
   get through, move one step stronger. If a genuine fast double letter gets
   eaten, move one step gentler.
-- Pause filtering, or turn Start at Login on and off.
+- Pause filtering, or turn Start at Login off (it starts on).
 
 ## Building from source
 

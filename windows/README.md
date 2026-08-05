@@ -28,7 +28,8 @@ Optional: `create-shortcut.ps1` puts a ChatterFix shortcut on the Desktop.
 ## Notes
 
 - No special permission is needed to install the keyboard hook, so setup is
-  run and go. Turn on Start at Login from the tray menu to launch at boot.
+  run and go. Start at Login switches itself on the first time the app runs,
+  writing the current user's `Run` key, and the tray menu turns it back off.
 - The exe is unsigned, so a downloaded copy triggers the SmartScreen notice
   ("Windows protected your PC"). Click More info, then Run anyway. Some
   antivirus tools flag any app that installs a keyboard hook. The source here
